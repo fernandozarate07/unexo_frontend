@@ -3,6 +3,7 @@
 import { Field, Input, Button, Container, VStack, Heading, Text, Link } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import styles from "./page.module.css";
+import NextLink from "next/link";
 
 export default function RegisterForm() {
   const {
@@ -120,7 +121,7 @@ export default function RegisterForm() {
           </Button>
           <Text fontSize="sm">
             ¿Ya tienes cuenta?{" "}
-            <Link fontWeight="800" focusRing="none" textDecoration="none" href="/login">
+            <Link as={NextLink} fontWeight="800" focusRing="none" textDecoration="none" href="/login">
               Iniciar sesión
             </Link>
           </Text>
