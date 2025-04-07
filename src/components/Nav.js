@@ -20,14 +20,16 @@ export default function Nav() {
           <Link as={NextLink} href="/" fontSize="l" fontWeight="medium" focusRing="none" textDecoration="none">
             Sobre Unexo
           </Link>
-          <ButtonGroup gap="4" fontSize="l" fontWeight="medium" focusRing="none" textDecoration="none">
-            <Link as={NextLink} href="/">
+          <ButtonGroup gap="4">
+            <Link as={NextLink} focusRing="none" textDecoration="none" href="/">
               <Button variant="surface" width="full">
                 Explora
               </Button>
             </Link>
-            <Link as={NextLink} href="/login">
-              <Button width="full">Iniciar sesión</Button>
+            <Link as={NextLink} focusRing="none" textDecoration="none" href="/login">
+              <Button width="full" colorPalette="cyan">
+                Iniciar sesión
+              </Button>
             </Link>
           </ButtonGroup>
         </HStack>

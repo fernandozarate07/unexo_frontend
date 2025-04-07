@@ -52,18 +52,30 @@ export default function LoginForm() {
               </Text>
             )}
 
-            <Link fontWeight="800" fontSize="sm" focusRing="none" textDecoration="none" href="/register">
+            <Link
+              fontWeight="800"
+              fontSize="sm"
+              focusRing="none"
+              textDecoration="none"
+              href="/register"
+              color="cyan.600">
               ¿Olvidaste tu contraseña?{" "}
             </Link>
           </Field.Root>
 
-          <Button type="submit" variant="surface" width="full">
+          <Button type="submit" colorPalette="cyan">
             Iniciar sesión
           </Button>
 
           <Text fontSize="sm">
             ¿Eres nuevo?{" "}
-            <Link as={NextLink} fontWeight="800" focusRing="none" textDecoration="none" href="/register">
+            <Link
+              as={NextLink}
+              fontWeight="800"
+              focusRing="none"
+              textDecoration="none"
+              href="/register"
+              color="cyan.600">
               Regístrate
             </Link>
           </Text>
