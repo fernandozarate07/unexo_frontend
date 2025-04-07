@@ -15,8 +15,34 @@ export default function RegisterForm() {
 
   const password = watch("password");
 
-  const onSubmit = (data) => {
-    console.log("Registrado:", data);
+  const onSubmit = async (data) => {
+    try {
+      const res = await fetch("http://localhost:5001/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const responseData = await res.json();
+
+      if (!res.ok) {
+        if (Array.isArray(responseData.errors)) {
+          console.error("❌ Errores en registro:");
+          responseData.errors.forEach((err) => console.error(`- ${err.param}: ${err.msg}`));
+        } else {
+          console.error("❌ Error en registro:", responseData.message);
+        }
+        return;
+      }
+
+      console.log("Usuario registrado:", responseData.user);
+      // Redirige al login o muestra mensaje
+      window.location.href = "/login";
+    } catch (err) {
+      console.error(" Error de conexión:", err);
+    }
   };
 
   return (
@@ -68,7 +94,7 @@ export default function RegisterForm() {
             </Field.Label>
             <Input
               type="tel"
-              placeholder="Número de contacto"
+              placeholder="264XXXXXXX"
               {...register("phone", { required: true })}
               css={{ "--focus-color": "gray" }}
             />
