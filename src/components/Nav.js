@@ -17,9 +17,6 @@ export default function Nav() {
           <Link as={NextLink} href="/" fontSize="l" fontWeight="medium" focusRing="none" textDecoration="none">
             Inicio
           </Link>
-          <Link as={NextLink} href="/" fontSize="l" fontWeight="medium" focusRing="none" textDecoration="none">
-            Sobre Unexo
-          </Link>
           <ButtonGroup gap="4">
             <Link as={NextLink} focusRing="none" textDecoration="none" href="/">
               <Button variant="surface" width="full">

@@ -8,7 +8,8 @@ export default function Hero() {
     <Box
       as="section"
       minH="calc(100vh - 80px)"
-      minW="100vw"
+      maxW="1200px"
+      mx="auto"
       display="flex"
       alignItems="center"
       justifyContent="center"
@@ -34,7 +35,7 @@ export default function Hero() {
 
           <Link as={NextLink} focusRing="none" textDecoration="none" href="/register">
             <Button size="lg" colorPalette="cyan">
-              REGISTRATE GRATIS
+              Registrate gratis
             </Button>
           </Link>
         </VStack>
