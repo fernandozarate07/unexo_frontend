@@ -29,10 +29,10 @@ export default function RegisterForm() {
 
       if (!res.ok) {
         if (Array.isArray(responseData.errors)) {
-          console.error("❌ Errores en registro:");
+          console.error("Errores en registro:");
           responseData.errors.forEach((err) => console.error(`- ${err.param}: ${err.msg}`));
         } else {
-          console.error("❌ Error en registro:", responseData.message);
+          console.error("ERROR: en registro:", responseData.message);
         }
         return;
       }
@@ -41,7 +41,7 @@ export default function RegisterForm() {
       // Redirige al login o muestra mensaje
       window.location.href = "/login";
     } catch (err) {
-      console.error(" Error de conexión:", err);
+      console.error(" ERROR: de conexión:", err);
     }
   };
 
@@ -85,22 +85,6 @@ export default function RegisterForm() {
             {errors.email && (
               <Text color="red.500" fontSize="xs">
                 Ingresa un email valido
-              </Text>
-            )}
-          </Field.Root>
-          <Field.Root name="phone">
-            <Field.Label>
-              Teléfono <Field.RequiredIndicator />
-            </Field.Label>
-            <Input
-              type="tel"
-              placeholder="264XXXXXXX"
-              {...register("phone", { required: true })}
-              css={{ "--focus-color": "gray" }}
-            />
-            {errors.phone && (
-              <Text color="red.500" fontSize="xs">
-                Ingresa un numero de telefono valido
               </Text>
             )}
           </Field.Root>
