@@ -53,7 +53,7 @@ export default function RegisterForm() {
         centerContent
         borderWidth="1px"
         borderStyle="solid"
-        borderRadius="8px"
+        borderRadius="md"
         borderColor="gray.200">
         <VStack as="form" gap="4" w="100%" onSubmit={handleSubmit(onSubmit)}>
           <Heading size="2xl">Crear cuenta</Heading>

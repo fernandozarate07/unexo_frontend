@@ -2,19 +2,22 @@
 
 import { Box, Heading, Text, Button, VStack, Link, Container } from "@chakra-ui/react";
 import NextLink from "next/link";
+import CascadeFilter from "../../components/cascadeFilter";
 
 export default function Hero() {
   return (
     <Box
       as="section"
-      minH="calc(100vh - 80px)"
+      h={{ base: "auto", md: "calc(100vh - 80px)" }}
       maxW="1200px"
       mx="auto"
       display="flex"
+      flexDirection="column"
       alignItems="center"
       justifyContent="center"
+      gap="12"
       textAlign="center"
-      px={{ base: "4", md: "8" }}>
+      p={{ base: "6", md: "12" }}>
       <Container maxW="800px" mx="auto">
         <VStack gap="8">
           <Heading as="h1" fontSize={{ base: "4xl", md: "6xl" }} fontWeight="normal" lineHeight="1">
@@ -40,6 +43,7 @@ export default function Hero() {
           </Link>
         </VStack>
       </Container>
+      <CascadeFilter />
     </Box>
   );
 }

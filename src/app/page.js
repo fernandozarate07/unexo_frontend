@@ -1,7 +1,7 @@
 // import Image from "next/image";
 import styles from "./page.module.css";
 import Hero from "./sections/hero";
-import HowWorks from "./sections/HowWorks";
+import HowWorks from "./sections/howWorks";
 
 export default function Home() {
   return (
