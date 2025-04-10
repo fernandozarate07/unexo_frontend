@@ -143,12 +143,12 @@ export default function HowItWorks() {
           </Timeline.Root>
           <ButtonGroup w="100%" gap="6">
             <Link as={NextLink} focusRing="none" textDecoration="none" href="/" w="100%">
-              <Button variant="surface" w="100%">
+              <Button variant="surface" w="100%" borderRadius="full">
                 Explora
               </Button>
             </Link>
             <Link as={NextLink} focusRing="none" textDecoration="none" href="/login" w="100%">
-              <Button w="100%" colorPalette="cyan">
+              <Button w="100%" colorPalette="cyan" borderRadius="full">
                 Aporta
               </Button>
             </Link>

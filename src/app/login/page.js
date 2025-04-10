@@ -63,7 +63,7 @@ export default function LoginForm() {
             </Link>
           </Field.Root>
 
-          <Button type="submit" colorPalette="cyan">
+          <Button type="submit" colorPalette="cyan" borderRadius="full">
             Iniciar sesión
           </Button>
 

@@ -37,7 +37,7 @@ export default function Hero() {
           </Text>
 
           <Link as={NextLink} focusRing="none" textDecoration="none" href="/register">
-            <Button size="lg" colorPalette="cyan">
+            <Button size="lg" colorPalette="cyan" borderRadius="full">
               Registrate gratis
             </Button>
           </Link>

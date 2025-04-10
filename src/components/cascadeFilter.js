@@ -1,9 +1,19 @@
 "use client";
-import { Box, Separator, HStack, IconButton, Field, NativeSelect, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Flex,
+  IconButton,
+  Field,
+  NativeSelect,
+  useBreakpointValue,
+  Portal,
+  Select,
+  createListCollection,
+} from "@chakra-ui/react";
 import { IoIosSearch } from "react-icons/io";
 import { useEffect, useState } from "react";
 
-const WaterfallFilter = () => {
+const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [data, setData] = useState({
     types: [],
     faculties: [],
@@ -12,17 +22,19 @@ const WaterfallFilter = () => {
     subjects: [],
   });
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [selected, setSelected] = useState({
-    type: "",
-    faculty: "",
-    degree: "",
-    academicYear: "",
-    subject: "",
+    type: initialSelected.type || "",
+    faculty: initialSelected.faculty || "",
+    degree: initialSelected.degree || "",
+    academicYear: initialSelected.academicYear || "",
+    subject: initialSelected.subject || "",
   });
 
-  // Detectar tamaño de pantalla
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
@@ -41,51 +53,44 @@ const WaterfallFilter = () => {
     setSelected((prev) => ({
       ...prev,
       [name]: value,
-      // al cambiar algo, resetear selectores siguientes
       ...(name === "faculty" && { degree: "", academicYear: "", subject: "" }),
       ...(name === "degree" && { academicYear: "", subject: "" }),
       ...(name === "academicYear" && { subject: "" }),
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const params = new URLSearchParams();
-
     Object.entries(selected).forEach(([key, value]) => {
       if (value) params.append(key, value);
     });
-
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/filter/cascadeFilter?${params.toString()}`);
-      const result = await res.json();
-      console.log("Resultados filtrados:", result.data.result);
-      window.location.href = "/search";
-    } catch (error) {
-      console.error("Error al filtrar:", error);
+    if (onSubmit) {
+      onSubmit(params);
+    } else {
+      const queryString = params.toString();
+      window.location.href = `/search?${queryString}`;
     }
   };
 
   const filteredDegrees = data.degrees.filter((deg) => deg.facultyId === parseInt(selected.faculty));
-
   const filteredYears = data.years.filter((yr) => yr.degreeId === parseInt(selected.degree));
-
   const filteredSubjects = data.subjects.filter((sub) => sub.yearId === parseInt(selected.academicYear));
 
   return (
-    <Box as="form" onSubmit={handleSubmit} w="full" display="flex" alignContent="center" justifyContent="center">
-      <HStack
-        gap={{ base: "2", md: "4", lg: "6" }}
+    <Flex as="form" w={{ base: "100%", md: "85%" }} onSubmit={handleSubmit} alignItems="center" justifyContent="center">
+      <Flex
+        w="100%"
+        py={{ base: "3", md: "6" }}
+        px={{ base: "3", md: "6" }}
+        flexDirection={{ base: "column", md: "row" }}
+        gap="3"
         align="center"
-        px={{ base: "4", md: "8", lg: "12" }}
-        py={{ base: "3", md: "4", lg: "6" }}
-        borderRadius={{ base: "md", md: "full" }}
-        flexWrap={{ base: "wrap", md: "nowrap" }}
         justifyContent="center"
-        boxShadow="sm">
+        boxShadow="sm"
+        borderRadius={{ base: "md", md: "full" }}>
         {/* Tipo de aporte */}
-        <Field.Root minWidth={{ base: "100%", md: "auto" }}>
-          <Field.Label fontSize={{ base: "sm", md: "md" }}>Tipo de aporte</Field.Label>
+        <Field.Root w="100%">
           <NativeSelect.Root>
             <NativeSelect.Field
               name="type"
@@ -93,8 +98,10 @@ const WaterfallFilter = () => {
               onChange={handleChange}
               focusRing="none"
               colorPalette="cyan"
-              size={{ base: "sm", md: "md" }}>
-              <option value="">Seleccionar</option>
+              size={{ base: "sm", md: "md" }}
+              borderRadius={{ base: "md", md: "full" }}
+              bg="white">
+              <option value="">Tipo de aporte</option>
               {data.types.map((type) => (
                 <option key={type.id} value={type.id}>
                   {type.name}
@@ -104,12 +111,8 @@ const WaterfallFilter = () => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-
-        {!isSmallScreen && <Separator orientation="vertical" height="full" />}
-
         {/* Facultad */}
-        <Field.Root minWidth={{ base: "100%", md: "auto" }}>
-          <Field.Label fontSize={{ base: "sm", md: "md" }}>Facultad</Field.Label>
+        <Field.Root w="100%">
           <NativeSelect.Root>
             <NativeSelect.Field
               name="faculty"
@@ -117,8 +120,9 @@ const WaterfallFilter = () => {
               onChange={handleChange}
               focusRing="none"
               colorPalette="cyan"
-              size={{ base: "sm", md: "md" }}>
-              <option value="">Seleccionar</option>
+              size={{ base: "sm", md: "md" }}
+              borderRadius={{ base: "md", md: "full" }}>
+              <option value="">Facultad</option>
               {data.faculties.map((fac) => (
                 <option key={fac.id} value={fac.id}>
                   {fac.name}
@@ -128,10 +132,8 @@ const WaterfallFilter = () => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-
         {/* Carrera */}
-        <Field.Root minWidth={{ base: "100%", md: "auto" }}>
-          <Field.Label fontSize={{ base: "sm", md: "md" }}>Carrera</Field.Label>
+        <Field.Root w="100%">
           <NativeSelect.Root>
             <NativeSelect.Field
               name="degree"
@@ -140,8 +142,9 @@ const WaterfallFilter = () => {
               focusRing="none"
               colorPalette="cyan"
               disabled={!filteredDegrees.length}
-              size={{ base: "sm", md: "md" }}>
-              <option value="">Seleccionar</option>
+              size={{ base: "sm", md: "md" }}
+              borderRadius={{ base: "md", md: "full" }}>
+              <option value="">Carrera</option>
               {filteredDegrees.map((deg) => (
                 <option key={deg.id} value={deg.id}>
                   {deg.name}
@@ -151,10 +154,8 @@ const WaterfallFilter = () => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-
         {/* Año */}
-        <Field.Root minWidth={{ base: "100%", md: "auto" }}>
-          <Field.Label fontSize={{ base: "sm", md: "md" }}>Año</Field.Label>
+        <Field.Root w="100%">
           <NativeSelect.Root>
             <NativeSelect.Field
               name="academicYear"
@@ -163,8 +164,9 @@ const WaterfallFilter = () => {
               focusRing="none"
               colorPalette="cyan"
               disabled={!filteredYears.length}
-              size={{ base: "sm", md: "md" }}>
-              <option value="">Seleccionar</option>
+              size={{ base: "sm", md: "md" }}
+              borderRadius={{ base: "md", md: "full" }}>
+              <option value="">Año</option>
               {filteredYears.map((yr) => (
                 <option key={yr.id} value={yr.id}>
                   {yr.name}
@@ -174,10 +176,8 @@ const WaterfallFilter = () => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-
         {/* Asignatura */}
-        <Field.Root minWidth={{ base: "100%", md: "auto" }}>
-          <Field.Label fontSize={{ base: "sm", md: "md" }}>Asignatura</Field.Label>
+        <Field.Root w="100%">
           <NativeSelect.Root>
             <NativeSelect.Field
               name="subject"
@@ -186,8 +186,9 @@ const WaterfallFilter = () => {
               focusRing="none"
               colorPalette="cyan"
               disabled={!filteredSubjects.length}
-              size={{ base: "sm", md: "md" }}>
-              <option value="">Seleccionar</option>
+              size={{ base: "sm", md: "md" }}
+              borderRadius={{ base: "md", md: "full" }}>
+              <option value="">Asignatura</option>
               {filteredSubjects.map((sub) => (
                 <option key={sub.id} value={sub.id}>
                   {sub.name}
@@ -197,23 +198,19 @@ const WaterfallFilter = () => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-
-        {!isSmallScreen && <Separator orientation="vertical" height="full" />}
-
-        {/* Botón de búsqueda */}
         <IconButton
+          w={{ base: "100%", md: "auto" }}
           type="submit"
           aria-label="Buscar"
           color="gray.200"
-          rounded="full"
+          borderRadius={{ base: "md", md: "full" }}
           colorPalette="cyan"
-          size={{ base: "md", md: "lg" }}
-          mt={{ base: "2", md: "0" }}>
+          size="sm">
           <IoIosSearch />
         </IconButton>
-      </HStack>
-    </Box>
+      </Flex>
+    </Flex>
   );
 };
 
-export default WaterfallFilter;
+export default cascadeFilter;

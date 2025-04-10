@@ -126,7 +126,7 @@ export default function RegisterForm() {
               </Text>
             )}
           </Field.Root>
-          <Button type="submit" colorPalette="cyan">
+          <Button type="submit" colorPalette="cyan" borderRadius="full">
             Registrate
           </Button>
           <Text fontSize="sm">

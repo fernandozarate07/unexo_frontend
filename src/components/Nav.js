@@ -19,12 +19,12 @@ export default function Nav() {
           </Link>
           <ButtonGroup gap="4">
             <Link as={NextLink} focusRing="none" textDecoration="none" href="/">
-              <Button variant="surface" width="full">
+              <Button variant="surface" width="full" borderRadius="full">
                 Explora
               </Button>
             </Link>
             <Link as={NextLink} focusRing="none" textDecoration="none" href="/login">
-              <Button width="full" colorPalette="cyan">
+              <Button width="full" colorPalette="cyan" borderRadius="full">
                 Iniciar sesión
               </Button>
             </Link>
