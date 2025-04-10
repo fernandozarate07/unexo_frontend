@@ -99,7 +99,7 @@ export default function HowItWorks() {
   });
 
   return (
-    <Box as="section" maxW="100%" px={{ base: 4, md: 8 }} py={{ base: 6, md: 10 }} mx="auto" bg="gray.100">
+    <Box as="section" maxW="100%" px={{ base: 4, md: 8 }} py={{ base: 6, md: 10 }} mx="auto">
       <Box
         display="flex"
         flexDirection={{ base: "column", md: "row" }}
@@ -107,7 +107,14 @@ export default function HowItWorks() {
         maxW="1200px"
         mx="auto">
         {/* Paso a paso */}
-        <Box flex="1" bg="white" p={{ base: 4, md: 6 }} borderRadius="md" display="flex" flexDirection="column">
+        <Box
+          flex="1"
+          bg="white"
+          p={{ base: 4, md: 6 }}
+          borderRadius="md"
+          display="flex"
+          flexDirection="column"
+          boxShadow="sm">
           <Heading size="lg" mb="6" textAlign="center">
             Primeros Pasos
           </Heading>
@@ -149,7 +156,14 @@ export default function HowItWorks() {
         </Box>
 
         {/* Preguntas Frecuentes */}
-        <Box flex="1.5" bg="white" p={{ base: 4, md: 6 }} borderRadius="md" display="flex" flexDirection="column">
+        <Box
+          flex="1.5"
+          bg="white"
+          p={{ base: 4, md: 6 }}
+          borderRadius="md"
+          display="flex"
+          flexDirection="column"
+          boxShadow="sm">
           <Heading size="lg" mb="6" textAlign="center">
             Preguntas Frecuentes
           </Heading>

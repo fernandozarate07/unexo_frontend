@@ -26,7 +26,7 @@ const WaterfallFilter = () => {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/filter/recoverData");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/filter/recoverData`);
         const json = await res.json();
         setData(json.data);
       } catch (error) {
@@ -57,7 +57,7 @@ const WaterfallFilter = () => {
     });
 
     try {
-      const res = await fetch(`http://localhost:5001/api/filter/cascadeFilter?${params.toString()}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/filter/cascadeFilter?${params.toString()}`);
       const result = await res.json();
       console.log("Resultados filtrados:", result.data.result);
       window.location.href = "/search";
@@ -79,12 +79,10 @@ const WaterfallFilter = () => {
         align="center"
         px={{ base: "4", md: "8", lg: "12" }}
         py={{ base: "3", md: "4", lg: "6" }}
-        borderWidth="1px"
-        borderStyle="solid"
         borderRadius={{ base: "md", md: "full" }}
-        borderColor="gray.200"
         flexWrap={{ base: "wrap", md: "nowrap" }}
-        justifyContent="center">
+        justifyContent="center"
+        boxShadow="sm">
         {/* Tipo de aporte */}
         <Field.Root minWidth={{ base: "100%", md: "auto" }}>
           <Field.Label fontSize={{ base: "sm", md: "md" }}>Tipo de aporte</Field.Label>
@@ -209,7 +207,7 @@ const WaterfallFilter = () => {
           color="gray.200"
           rounded="full"
           colorPalette="cyan"
-          size={{ base: "md", md: "lg", lg: "xl" }}
+          size={{ base: "md", md: "lg" }}
           mt={{ base: "2", md: "0" }}>
           <IoIosSearch />
         </IconButton>
