@@ -1,19 +1,9 @@
 "use client";
-import {
-  Flex,
-  IconButton,
-  Field,
-  NativeSelect,
-  useBreakpointValue,
-  Portal,
-  Select,
-  createListCollection,
-} from "@chakra-ui/react";
+import { Flex, IconButton, Field, NativeSelect, useBreakpointValue } from "@chakra-ui/react";
 import { IoIosSearch } from "react-icons/io";
 import { useEffect, useState } from "react";
 
 const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [data, setData] = useState({
     types: [],
     faculties: [],
@@ -22,7 +12,6 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
     subjects: [],
   });
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [selected, setSelected] = useState({
     type: initialSelected.type || "",
     faculty: initialSelected.faculty || "",
@@ -31,10 +20,8 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
     subject: initialSelected.subject || "",
   });
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
@@ -53,6 +40,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
     setSelected((prev) => ({
       ...prev,
       [name]: value,
+      ...(name === "type" && { faculty: "", degree: "", academicYear: "", subject: "" }),
       ...(name === "faculty" && { degree: "", academicYear: "", subject: "" }),
       ...(name === "degree" && { academicYear: "", subject: "" }),
       ...(name === "academicYear" && { subject: "" }),
@@ -73,6 +61,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
     }
   };
 
+  const filteredFaculties = selected.type ? data.faculties : [];
   const filteredDegrees = data.degrees.filter((deg) => deg.facultyId === parseInt(selected.faculty));
   const filteredYears = data.years.filter((yr) => yr.degreeId === parseInt(selected.degree));
   const filteredSubjects = data.subjects.filter((sub) => sub.yearId === parseInt(selected.academicYear));
@@ -88,7 +77,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
         align="center"
         justifyContent="center"
         boxShadow="sm"
-        borderRadius={{ base: "md", md: "full" }}>
+        borderRadius="md">
         {/* Tipo de aporte */}
         <Field.Root w="100%">
           <NativeSelect.Root>
@@ -99,7 +88,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               focusRing="none"
               colorPalette="cyan"
               size={{ base: "sm", md: "md" }}
-              borderRadius={{ base: "md", md: "full" }}
+              borderRadius="md"
               bg="white">
               <option value="">Tipo de aporte</option>
               {data.types.map((type) => (
@@ -120,10 +109,11 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               onChange={handleChange}
               focusRing="none"
               colorPalette="cyan"
+              disabled={!selected.type}
               size={{ base: "sm", md: "md" }}
-              borderRadius={{ base: "md", md: "full" }}>
+              borderRadius="md">
               <option value="">Facultad</option>
-              {data.faculties.map((fac) => (
+              {filteredFaculties.map((fac) => (
                 <option key={fac.id} value={fac.id}>
                   {fac.name}
                 </option>
@@ -143,7 +133,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               colorPalette="cyan"
               disabled={!filteredDegrees.length}
               size={{ base: "sm", md: "md" }}
-              borderRadius={{ base: "md", md: "full" }}>
+              borderRadius="md">
               <option value="">Carrera</option>
               {filteredDegrees.map((deg) => (
                 <option key={deg.id} value={deg.id}>
@@ -165,7 +155,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               colorPalette="cyan"
               disabled={!filteredYears.length}
               size={{ base: "sm", md: "md" }}
-              borderRadius={{ base: "md", md: "full" }}>
+              borderRadius="md">
               <option value="">Año</option>
               {filteredYears.map((yr) => (
                 <option key={yr.id} value={yr.id}>
@@ -187,7 +177,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               colorPalette="cyan"
               disabled={!filteredSubjects.length}
               size={{ base: "sm", md: "md" }}
-              borderRadius={{ base: "md", md: "full" }}>
+              borderRadius="md">
               <option value="">Asignatura</option>
               {filteredSubjects.map((sub) => (
                 <option key={sub.id} value={sub.id}>
@@ -198,6 +188,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
+        {/* Botón de búsqueda */}
         <IconButton
           w={{ base: "100%", md: "auto" }}
           type="submit"
@@ -205,7 +196,8 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
           color="gray.200"
           borderRadius={{ base: "md", md: "full" }}
           colorPalette="cyan"
-          size="sm">
+          size="sm"
+          isDisabled={!selected.type}>
           <IoIosSearch />
         </IconButton>
       </Flex>

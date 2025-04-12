@@ -7,8 +7,14 @@ import NextLink from "next/link";
 
 export default function Footer() {
   return (
-    <Box as="footer" px="8" py="12" bg="white" boxShadow="sm">
-      <Flex direction={{ base: "column", md: "row" }} justify="space-between" align="flex-start" gap="12">
+    <Flex as="footer" px="6" py="12" bg="white" boxShadow="sm" align="center" justifyContent="center" w="100%">
+      <Flex
+        direction={{ base: "column", md: "row" }}
+        justify="space-between"
+        align="flex-start"
+        gap="12"
+        maxW="1200px"
+        w="100%">
         {/* Izquierda */}
         <Stack spacing="6">
           <Stack spacing="2">
@@ -27,7 +33,7 @@ export default function Footer() {
               type="submit"
               aria-label="Instagram"
               color="gray.200"
-              rounded="full"
+              borderRadius="full"
               colorPalette="cyan"
               size="sm">
               <FaInstagram />
@@ -46,9 +52,9 @@ export default function Footer() {
           </Text>
         </Stack>
         {/* Derecha */}
-        <VStack gap="3" alignItems="center" justifyContent="flex-end">
-          <NextImage src="/unexo_logo_nav.svg" alt="Logo" width={240} height={120} />
-          <Text fontSize="lg">
+        <Flex h="full" flexDirection="column" alignItems="center" justifyContent="space-between">
+          <NextImage src="/unexo_logo.svg" alt="Logo" width={100} height={100} />
+          <Text fontSize="sm">
             © 2025 - Hecho con cariño por{" "}
             <Link
               href="https://www.instagram.com/zarate.fernando.delvalle"
@@ -59,8 +65,8 @@ export default function Footer() {
               Fernando Zárate
             </Link>{" "}
           </Text>{" "}
-        </VStack>
+        </Flex>
       </Flex>
-    </Box>
+    </Flex>
   );
 }

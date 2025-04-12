@@ -18,13 +18,13 @@ export default function Nav() {
             Inicio
           </Link>
           <ButtonGroup gap="4">
-            <Link as={NextLink} focusRing="none" textDecoration="none" href="/">
-              <Button variant="surface" width="full" borderRadius="full">
+            <Link as={NextLink} focusRing="none" textDecoration="none" href="/search">
+              <Button variant="surface" width="full" borderRadius="md">
                 Explora
               </Button>
             </Link>
             <Link as={NextLink} focusRing="none" textDecoration="none" href="/login">
-              <Button width="full" colorPalette="cyan" borderRadius="full">
+              <Button width="full" colorPalette="cyan" borderRadius="md">
                 Iniciar sesión
               </Button>
             </Link>
