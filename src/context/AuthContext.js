@@ -15,7 +15,7 @@ export function AuthProvider({ children }) {
 
   const checkSession = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/checkSessionStatus`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/sessionStatus`, {
         credentials: "include",
       });
       const data = await res.json();
