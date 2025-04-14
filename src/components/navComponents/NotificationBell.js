@@ -21,12 +21,12 @@ export default function NotificationBell() {
       {unreadCount > 0 && (
         <Badge
           position="absolute"
-          top="0"
-          right="0"
+          top="-1"
+          right="-1"
           color="white"
           fontSize="xs"
           borderRadius="full"
-          px="1.5"
+          px="1"
           py="0.5"
           bg="cyan.600">
           {unreadCount}
@@ -39,6 +39,7 @@ export default function NotificationBell() {
           top="64px"
           right="0"
           w="246px"
+          maxH="360px"
           direction="column"
           gap="3"
           bg="white"
@@ -48,14 +49,12 @@ export default function NotificationBell() {
           zIndex="20"
           p="2">
           {loading ? (
-            <Box textAlign="center">Cargando...</Box>
+            <Text textAlign="center">Cargando...</Text>
           ) : notifications.length === 0 ? (
-            <Box textAlign="center">No tienes notificaciones.</Box>
+            <Text textAlign="center">No tienes notificaciones.</Text>
           ) : (
             notifications.map((notif) => (
               <Flex
-                minH="40px"
-                h="auto"
                 key={notif.id}
                 bg={notif.isRead ? "white" : "gray.100"}
                 py="3"
@@ -63,6 +62,8 @@ export default function NotificationBell() {
                 borderRadius="md"
                 cursor="pointer"
                 direction="column"
+                flex="1"
+                justifyContent="center"
                 onClick={() => markAsRead(notif.id)}>
                 <Text fontSize="xs">{notif.message}</Text>
               </Flex>

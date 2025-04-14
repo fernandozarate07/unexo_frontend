@@ -97,7 +97,7 @@ export default function LoginForm() {
               </Text>
             )}
           </Field.Root>
-          <Button type="submit" colorPalette="cyan" borderRadius="full">
+          <Button type="submit" colorPalette="cyan" borderRadius="md">
             Iniciar sesión
           </Button>
           <Text fontSize="sm">

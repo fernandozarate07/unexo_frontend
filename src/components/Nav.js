@@ -1,7 +1,7 @@
 "use client";
 import { NotificationProvider } from "@/context/NotificationContext";
 
-import { Box, Flex, HStack, Link, Button, ButtonGroup } from "@chakra-ui/react";
+import { Box, Flex, HStack, Link, Button, ButtonGroup, Separator } from "@chakra-ui/react";
 import NextLink from "next/link";
 import NextImage from "next/image";
 import { useAuth } from "@/context/AuthContext";
@@ -33,6 +33,7 @@ export default function Nav() {
               <Link as={NextLink} href="/" fontSize="l" fontWeight="medium" focusRing="none" textDecoration="none">
                 Inicio
               </Link>
+              <Separator orientation="vertical" height="12" />
               <ButtonGroup gap="3">
                 <Link as={NextLink} focusRing="none" textDecoration="none" href="/search">
                   <Button variant="surface" width="full" borderRadius="md">
@@ -45,8 +46,10 @@ export default function Nav() {
                   </Button>
                 </Link>
               </ButtonGroup>
+              <Separator orientation="vertical" height="12" />
               {/* Notification bell */}
               <NotificationBell />
+              <Separator orientation="vertical" height="12" />
               {/* Menu user*/}
               <MenuUser user={user} handleLogout={handleLogout} />
             </Flex>
@@ -55,6 +58,7 @@ export default function Nav() {
               <Link as={NextLink} href="/" fontSize="l" fontWeight="medium" focusRing="none" textDecoration="none">
                 Inicio
               </Link>
+              <Separator orientation="vertical" height="12" />
               <ButtonGroup gap="4">
                 <Link as={NextLink} focusRing="none" textDecoration="none" href="/search">
                   <Button variant="surface" width="full" borderRadius="md">

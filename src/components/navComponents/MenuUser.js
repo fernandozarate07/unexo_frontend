@@ -14,12 +14,10 @@ export default function AvatarMenu({ user, handleLogout }) {
         offset: { mainAxis: 24, crossAxis: -90 },
       }}>
       <Menu.Trigger asChild>
-        <Box as="button" rounded="full" overflow="hidden" cursor="pointer" border="none" p="0">
-          <Avatar.Root>
-            <Avatar.Fallback name={user.name} />
-            <Avatar.Image src={user.profilePhoto} />
-          </Avatar.Root>
-        </Box>
+        <Avatar.Root>
+          <Avatar.Fallback name={user.name} />
+          <Avatar.Image src={user.profilePhoto} />
+        </Avatar.Root>
       </Menu.Trigger>
       <MenuPositioner gap="3">
         <MenuContent>
