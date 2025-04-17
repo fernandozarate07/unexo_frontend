@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Unexo – Frontend
 
-## Getting Started
+Unexo es una plataforma de clasificados académicos pensada para estudiantes de la Universidad Nacional de San Juan. Permite compartir, buscar y acceder a materiales como resúmenes, exámenes, tesis, y más. Esta es la app del lado del cliente (frontend), desarrollada con Next.js.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Funcionalidades implementadas
+
+- 🌐 Landing page con presentación del proyecto
+- 🔍 Página de búsqueda de aportes académicos
+- 🔗 Filtro en cascada: por tipo, facultad, carrera, año y asignatura
+- 🔔 Sistema de notificaciones visuales en el navbar
+
+---
+
+## 🧩 En desarrollo (roadmap)
+
+- Funcionalidad de "Aportar"
+- Página "Mi perfil"
+- Página de "Configuración"
+- Refactorizar funcionalidad de notificaciones utilizando `Popover`
+- Modularizar botón de "Me gusta" e implementar funcionalidad
+- Función de "Descarga"
+- Vincular enlaces en el footer (cuando se encuentren disponibles)
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+- [Next.js](https://nextjs.org)
+- Chakra UI (v3)
+- Framer Motion
+- Python (Modelos de ML/AI e integraciones)
+
+---
+
+## 📁 Estructura del proyecto
+
+```
+src/
+├── app/                # Páginas principales
+├── components/         # Componentes reutilizables
+├── context/            # Contextos globales
+└── lib/                # Lógica compartida
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🧑‍💻 ¿Querés colaborar?
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+¡Bienvenido! Podés sumar ideas, diseño, código o testing.  
+Para aportar código:
 
-## Learn More
+1. Comentá tu idea en el grupo o en un issue.
+2. Una vez aprobada, forkeá este repo y creá una nueva rama (`feature/...`, `fix/...`, etc.).
+3. Descargá el proyecto, desarrollá tu parte y luego abrí un pull request.
+4. Si está todo OK, lo integramos y tu aporte será reconocido en la app 💜
 
-To learn more about Next.js, take a look at the following resources:
+👉 [Guía completa de contribución](./CONTRIBUTING.md) (próximamente)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📦 Instalación local
 
-## Deploy on Vercel
+Cloná el proyecto y ejecutá:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm install
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+
+---
+
+## 🔗 Recursos y comunidad
+
+- Grupo de desarrollo: [WhatsApp - Devs UNEXO](https://chat.whatsapp.com/DPCNOOAvl9Z0tmmBNZTFXe)
+- Grupo de aportes académicos: [WhatsApp - Aportes UNEXO](https://chat.whatsapp.com/E0i8kPDJhof0eJZ0UDHZIH)
+
+Si querés participar en el desarrollo o mantenimiento del proyecto, ¡sumate al grupo de desarrollo! Ahí podrás proponer ideas, resolver dudas y coordinar colaboraciones.
+
+---
+
+## 🛡️ Licencia
+
+Este proyecto es de uso personal. El contenido compartido por los usuarios en la app debe respetar los derechos de autor correspondientes.
+
+---
+
+## 📣 ¿Querés sumarte al backend?
+
+Este repo contiene solo el frontend. Si querés colaborar en el backend, contactanos y te pasamos el acceso al otro repo.
+
+---

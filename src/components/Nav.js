@@ -25,7 +25,7 @@ export default function Nav() {
         <Flex maxW="1200px" mx="auto" h="80px" alignItems="center" justifyContent="space-between">
           {/* Logo */}
           <NextLink href="/">
-            <NextImage src="/unexo_logo_nav.svg" alt="Logo" width={160} height={80} />
+            <NextImage src="/unexo_logo_nav.svg" alt="Logo" width={120} height={60} />
           </NextLink>
 
           {user ? (
