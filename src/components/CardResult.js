@@ -6,14 +6,12 @@ import { IoIosSave } from "react-icons/io";
 export default function CardResult({ result, onClick, isSelected }) {
   return (
     <Flex
+      p="3"
       flexDirection="column"
       gap="3"
       borderRadius="md"
       border="1px solid "
       borderColor="gray.200"
-      p="3"
-      w="100%"
-      maxW="600px"
       bg={isSelected ? "gray.100" : "white"}
       cursor="pointer"
       onClick={onClick}

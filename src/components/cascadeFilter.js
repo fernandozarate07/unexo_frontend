@@ -1,9 +1,21 @@
-"use client";
+"use client"; // Indica que este componente es del lado del cliente (Client Component)
+
+// Chakra UI y librerías necesarias
 import { Flex, IconButton, Field, NativeSelect, useBreakpointValue } from "@chakra-ui/react";
-import { IoIosSearch } from "react-icons/io";
+import { IoIosSearch } from "react-icons/io"; // Ícono de búsqueda
 import { useEffect, useState } from "react";
 
+/**
+ * Componente cascadeFilter
+ * Filtro en cascada para seleccionar tipo de aporte, facultad, carrera, año y asignatura.
+ * Se usa para filtrar los aportes disponibles según distintos criterios académicos.
+ *
+ * @param {Object} props - Propiedades del componente.
+ * @param {Object} props.initialSelected - Valores preseleccionados (útil al volver de la búsqueda).
+ * @param {Function} props.onSubmit - Callback opcional para manejar el submit personalizado.
+ */
 const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
+  // Estado para almacenar los datos recibidos del backend
   const [data, setData] = useState({
     types: [],
     faculties: [],
@@ -12,6 +24,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
     subjects: [],
   });
 
+  // Estado para almacenar las selecciones del usuario
   const [selected, setSelected] = useState({
     type: initialSelected.type || "",
     faculty: initialSelected.faculty || "",
@@ -20,8 +33,10 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
     subject: initialSelected.subject || "",
   });
 
+  // Detecta si el viewport es pequeño (mobile) para ajustar el diseño
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
 
+  // Carga inicial de datos al montar el componente
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
@@ -35,6 +50,10 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
     fetchInitialData();
   }, []);
 
+  /**
+   * Maneja los cambios en los selects.
+   * Limpia las selecciones inferiores en la cascada según corresponda.
+   */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSelected((prev) => ({
@@ -47,6 +66,10 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
     }));
   };
 
+  /**
+   * Maneja el envío del formulario.
+   * Construye los parámetros de búsqueda y redirige o ejecuta el callback si existe.
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     const params = new URLSearchParams();
@@ -61,24 +84,24 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
     }
   };
 
+  // Datos filtrados para cada selector dependiente
   const filteredFaculties = selected.type ? data.faculties : [];
   const filteredDegrees = data.degrees.filter((deg) => deg.facultyId === parseInt(selected.faculty));
   const filteredYears = data.years.filter((yr) => yr.degreeId === parseInt(selected.degree));
   const filteredSubjects = data.subjects.filter((sub) => sub.yearId === parseInt(selected.academicYear));
 
   return (
-    <Flex as="form" w={{ base: "100%", md: "85%" }} onSubmit={handleSubmit} alignItems="center" justifyContent="center">
+    <Flex as="form" w="100%" onSubmit={handleSubmit} alignItems="center" justifyContent="center">
       <Flex
         w="100%"
-        py={{ base: "3", md: "6" }}
-        px={{ base: "3", md: "6" }}
+        p={{ base: "3", md: "6" }}
         flexDirection={{ base: "column", md: "row" }}
-        gap="3"
         align="center"
         justifyContent="center"
+        gap="3"
         boxShadow="sm"
         borderRadius="md">
-        {/* Tipo de aporte */}
+        {/* Select: Tipo de aporte */}
         <Field.Root w="100%">
           <NativeSelect.Root>
             <NativeSelect.Field
@@ -100,7 +123,8 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-        {/* Facultad */}
+
+        {/* Select: Facultad */}
         <Field.Root w="100%">
           <NativeSelect.Root>
             <NativeSelect.Field
@@ -122,7 +146,8 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-        {/* Carrera */}
+
+        {/* Select: Carrera */}
         <Field.Root w="100%">
           <NativeSelect.Root>
             <NativeSelect.Field
@@ -144,7 +169,8 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-        {/* Año */}
+
+        {/* Select: Año */}
         <Field.Root w="100%">
           <NativeSelect.Root>
             <NativeSelect.Field
@@ -166,7 +192,8 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-        {/* Asignatura */}
+
+        {/* Select: Asignatura */}
         <Field.Root w="100%">
           <NativeSelect.Root>
             <NativeSelect.Field
@@ -188,6 +215,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
+
         {/* Botón de búsqueda */}
         <IconButton
           w={{ base: "100%", md: "auto" }}

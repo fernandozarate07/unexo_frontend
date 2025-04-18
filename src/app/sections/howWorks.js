@@ -1,10 +1,10 @@
-"use client";
+"use client"; // Este archivo se ejecuta en el cliente (React Client Component de Next.js)
 
+// Importaciones de componentes de Chakra UI y librerías necesarias
 import {
-  Box,
+  Flex,
   Heading,
   Text,
-  VStack,
   Button,
   Icon,
   Separator,
@@ -21,10 +21,20 @@ import {
   ButtonGroup,
   Link,
 } from "@chakra-ui/react";
-import NextLink from "next/link";
-import { FaUserCheck, FaCheck, FaFileDownload } from "react-icons/fa";
+import NextLink from "next/link"; // Navegación sin recarga
+import { FaUserCheck, FaCheck, FaFileDownload } from "react-icons/fa"; // Íconos representativos para los pasos
 
+/**
+ * Componente HowItWorks
+ * Muestra los pasos iniciales para usar la plataforma Unexo y una sección de preguntas frecuentes.
+ *
+ * @returns {JSX.Element} Interfaz que explica cómo funciona Unexo y resuelve dudas comunes.
+ */
 export default function HowItWorks() {
+  /**
+   * Pasos iniciales para que el usuario entienda cómo funciona la plataforma.
+   * Cada paso incluye un título, descripción y un ícono.
+   */
   const steps = [
     {
       title: "Registrate",
@@ -44,6 +54,10 @@ export default function HowItWorks() {
     },
   ];
 
+  /**
+   * Datos en bruto de preguntas frecuentes, organizadas por categoría.
+   * Se agrupan más adelante para renderizar por sección.
+   */
   const rawFaqs = [
     { category: "Unexo" },
     {
@@ -85,7 +99,7 @@ export default function HowItWorks() {
     },
   ];
 
-  // Agrupar preguntas por categoría
+  // Agrupamos las preguntas frecuentes por categoría
   const groupedFaqs = {};
   let currentCategory = "";
 
@@ -99,23 +113,18 @@ export default function HowItWorks() {
   });
 
   return (
-    <Box as="section" maxW="100%" px={{ base: 4, md: 8 }} py={{ base: 6, md: 10 }} mx="auto">
-      <Box
-        display="flex"
-        flexDirection={{ base: "column", md: "row" }}
-        gap={{ base: 8, md: 12 }}
-        maxW="1200px"
-        mx="auto">
-        {/* Paso a paso */}
-        <Box
+    <Flex w="100%" p={{ base: 6, md: 12 }}>
+      <Flex maxW="1200px" mx="auto" flexDirection={{ base: "column", md: "row" }} gap={{ base: 6, md: 12 }}>
+        {/* Sección de primeros pasos */}
+        <Flex
           flex="1"
           bg="white"
-          p={{ base: 4, md: 6 }}
+          p={{ base: 3, md: 6 }}
           borderRadius="md"
           display="flex"
           flexDirection="column"
           boxShadow="sm">
-          <Heading size="lg" mb="6" textAlign="center">
+          <Heading size="xl" mb="6" textAlign="center">
             Primeros Pasos
           </Heading>
           <Separator />
@@ -129,18 +138,20 @@ export default function HowItWorks() {
                   </TimelineIndicator>
                 </TimelineConnector>
                 <TimelineContent>
-                  <Box w="100" border="1px solid" borderColor="gray.200" borderRadius="md" p="6">
-                    <VStack align="start" gap="6">
+                  <Flex w="100" border="1px solid" borderColor="gray.200" borderRadius="md" p="6">
+                    <Flex flexDirection="column" gap="6">
                       <TimelineTitle fontSize="xl">{step.title}</TimelineTitle>
                       <TimelineDescription fontSize="sm" color="gray.500">
                         {step.description}
                       </TimelineDescription>
-                    </VStack>
-                  </Box>
+                    </Flex>
+                  </Flex>
                 </TimelineContent>
               </TimelineItem>
             ))}
           </Timeline.Root>
+
+          {/* Botones de acción */}
           <ButtonGroup w="100%" gap="6">
             <Link as={NextLink} focusRing="none" textDecoration="none" href="/" w="100%">
               <Button variant="surface" w="100%" borderRadius="md">
@@ -153,25 +164,18 @@ export default function HowItWorks() {
               </Button>
             </Link>
           </ButtonGroup>
-        </Box>
+        </Flex>
 
-        {/* Preguntas Frecuentes */}
-        <Box
-          flex="1.5"
-          bg="white"
-          p={{ base: 4, md: 6 }}
-          borderRadius="md"
-          display="flex"
-          flexDirection="column"
-          boxShadow="sm">
-          <Heading size="lg" mb="6" textAlign="center">
+        {/* Sección de preguntas frecuentes */}
+        <Flex flex="1.5" bg="white" p={{ base: 3, md: 6 }} flexDirection="column" boxShadow="sm" borderRadius="md">
+          <Heading size="xl" mb="6" textAlign="center">
             Preguntas Frecuentes
           </Heading>
           <Separator />
 
-          <VStack align="stretch" gap="12" my="6">
+          <Flex flexDirection="column" align="stretch" gap="12" my="6">
             {Object.entries(groupedFaqs).map(([category, items]) => (
-              <Box key={category}>
+              <Flex flexDirection="column" key={category}>
                 <Text fontSize="sm" color="gray.500" fontWeight="semibold" mb="2" pl="1">
                   {category}
                 </Text>
@@ -195,11 +199,11 @@ export default function HowItWorks() {
                     </Accordion.Item>
                   ))}
                 </Accordion.Root>
-              </Box>
+              </Flex>
             ))}
-          </VStack>
-        </Box>
-      </Box>
-    </Box>
+          </Flex>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 }
