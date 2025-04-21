@@ -32,10 +32,6 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
     academicYear: initialSelected.academicYear || "",
     subject: initialSelected.subject || "",
   });
-
-  // Detecta si el viewport es pequeño (mobile) para ajustar el diseño
-  const isSmallScreen = useBreakpointValue({ base: true, md: false });
-
   // Carga inicial de datos al montar el componente
   useEffect(() => {
     const fetchInitialData = async () => {

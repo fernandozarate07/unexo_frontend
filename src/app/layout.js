@@ -16,7 +16,6 @@ import { AuthProvider } from "@/context/AuthContext"; // Proveedor de contexto d
 export default function RootLayout({ children }) {
   return (
     <html suppressHydrationWarning>
-      {" "}
       {/* Asegura que Next.js maneje la hidratación correctamente en el lado del cliente */}
       <body>
         {/* Proveedor para la configuración global de la UI */}

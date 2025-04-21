@@ -40,7 +40,7 @@ export default function Nav() {
                     Explora
                   </Button>
                 </Link>
-                <Link as={NextLink} focusRing="none" textDecoration="none" href="/contribute">
+                <Link as={NextLink} focusRing="none" textDecoration="none" href="/contribution">
                   <Button width="full" colorPalette="cyan" borderRadius="md">
                     Aportar
                   </Button>

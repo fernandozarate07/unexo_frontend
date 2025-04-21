@@ -13,7 +13,6 @@ import HowWorks from "./sections/howWorks"; // Componente de la sección "How it
 export default function Home() {
   return (
     <div className={styles.page}>
-      {" "}
       {/* Contenedor principal con la clase de estilo 'page' */}
       <main className={styles.main}>
         {/* Sección "Hero" que generalmente contiene un mensaje destacado o llamada a la acción */}
