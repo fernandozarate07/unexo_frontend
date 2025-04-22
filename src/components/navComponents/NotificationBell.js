@@ -1,85 +1,82 @@
 "use client";
 
-import { useState } from "react";
 import { useNotifications } from "@/context/NotificationContext";
-import { IconButton, Badge, Flex, Box, Text, Separator } from "@chakra-ui/react";
+import {
+  IconButton,
+  Button,
+  Badge,
+  Text,
+  Menu,
+  MenuItem,
+  MenuPositioner,
+  MenuContent,
+  Spinner,
+  Flex,
+} from "@chakra-ui/react";
 import { IoNotifications } from "react-icons/io5";
 import { GrUpdate } from "react-icons/gr";
 
 export default function NotificationBell() {
   const { notifications, loading, fetchNotifications, markAsRead, unreadCount } = useNotifications();
 
-  const [open, setOpen] = useState(false);
-
-  const togglePanel = () => setOpen(!open);
-
   return (
-    <Flex alignItems="center" position="relative">
-      <IconButton onClick={togglePanel} aria-label="Notificaciones" variant="ghost" position="relative">
-        <IoNotifications />
-      </IconButton>
-      {unreadCount > 0 && (
-        <Badge
-          position="absolute"
-          top="-1"
-          right="-1"
-          color="white"
-          fontSize="xs"
-          borderRadius="full"
-          px="1"
-          py="0.5"
-          bg="cyan.600">
-          {unreadCount}
-        </Badge>
-      )}
-
-      {open && (
-        <Flex
-          position="absolute"
-          top="64px"
-          right="0"
-          w="246px"
-          maxH="360px"
-          direction="column"
-          gap="3"
-          bg="white"
-          boxShadow="md"
-          borderRadius="md"
-          overflowY="auto"
-          zIndex="20"
-          p="2">
-          {loading ? (
-            <Text textAlign="center">Cargando...</Text>
-          ) : notifications.length === 0 ? (
-            <Text textAlign="center">No tienes notificaciones.</Text>
-          ) : (
-            notifications.map((notif) => (
-              <Flex
-                key={notif.id}
-                bg={notif.isRead ? "white" : "gray.100"}
-                py="3"
-                px="3"
-                borderRadius="md"
-                cursor="pointer"
-                direction="column"
-                flex="1"
-                justifyContent="center"
-                onClick={() => markAsRead(notif.id)}>
-                <Text fontSize="xs">{notif.message}</Text>
-              </Flex>
-            ))
+    <Menu.Root
+      positioning={{
+        anchorPoint: { x: 0, y: 0 },
+      }}>
+      <Menu.Trigger asChild position="relative" focusRing="none">
+        <IconButton aria-label="Notificaciones" borderRadius="full" colorPalette="gray">
+          <IoNotifications />
+          {unreadCount > 0 && (
+            <Badge
+              position="absolute"
+              top="-1"
+              right="-1"
+              color="white"
+              fontSize="xs"
+              borderRadius="full"
+              px="1.5"
+              bg="cyan.600">
+              {unreadCount}
+            </Badge>
           )}
-          <Separator />
-          <IconButton
-            aria-label="Actualizar notificaciones"
-            minH="40px"
-            w="100%"
-            variant="subtle"
-            onClick={fetchNotifications}>
+        </IconButton>
+      </Menu.Trigger>
+      <MenuPositioner>
+        <MenuContent maxH="400px" maxW="300px" display="flex" flexDirection="column" gap="3">
+          {loading ? (
+            <Spinner size="sm" />
+          ) : notifications.length === 0 ? (
+            <MenuItem>
+              <Text textAlign="center">No tienes notificaciones.</Text>
+            </MenuItem>
+          ) : (
+            <Flex pb="1" flexDirection="column" borderRadius="md" border="1px solid" borderColor="gray.200">
+              <MenuItem borderTopRadius="sm" borderBottomRadius="none" bg="gray.200">
+                <Text w="100%" fontWeight="bold" textAlign="center">
+                  Notificaciones
+                </Text>
+              </MenuItem>
+              {notifications.map((notif) => (
+                <MenuItem
+                  key={notif.id}
+                  bg={notif.isRead ? "white" : "gray.100"}
+                  p="3"
+                  direction="column"
+                  flex="1"
+                  borderRadius="none"
+                  cursor="pointer"
+                  onClick={() => markAsRead(notif.id)}>
+                  {notif.message}
+                </MenuItem>
+              ))}
+            </Flex>
+          )}
+          <Button aria-label="Actualizar notificaciones" w="100%" focusRing="none" onClick={fetchNotifications}>
             <GrUpdate />
-          </IconButton>
-        </Flex>
-      )}
-    </Flex>
+          </Button>
+        </MenuContent>
+      </MenuPositioner>
+    </Menu.Root>
   );
 }

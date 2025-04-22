@@ -1,6 +1,6 @@
 // Importamos los proveedores necesarios para la gestión del estado global de la UI y la autenticación
 import { UiProvider } from "@/components/ui/provider"; // Proveedor para la interfaz de usuario, probablemente gestiona temas, diseño y configuraciones visuales.
-import Nav from "@/components/Nav"; // Componente de navegación que se muestra en la parte superior de cada página.
+import Nav from "@/components/nav/Nav"; // Componente de navegación que se muestra en la parte superior de cada página.
 import Footer from "@/components/Footer"; // Componente de pie de página que se muestra al final de cada página.
 import { AuthProvider } from "@/context/AuthContext"; // Proveedor de contexto de autenticación, gestiona el estado de inicio de sesión y el acceso del usuario.
 
