@@ -41,7 +41,7 @@ export default function AvatarMenu({ user, handleLogout }) {
               </Text>
             </MenuItem>
             <Separator />
-            <MenuItem value="profile" onSelect={() => router.push("/userProfile")} cursor="pointer">
+            <MenuItem value="profile" onSelect={() => router.push("/account#accountProfile")} cursor="pointer">
               Mi perfil
             </MenuItem>
             <MenuItem value="contribution" onSelect={() => router.push("/userContributions")} cursor="pointer">

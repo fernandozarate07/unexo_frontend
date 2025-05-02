@@ -5,7 +5,7 @@ import { Heading, Text, Button, Flex, Link } from "@chakra-ui/react";
 // Importamos Link de Next.js para navegación entre rutas sin recargar la página
 import NextLink from "next/link";
 // Componente de filtro en cascada para búsqueda personalizada
-import CascadeFilter from "../../components/cascadeFilter";
+import CascadeFilter from "../../../components/cascadeFilter";
 
 /**
  * Componente Hero: Sección principal de bienvenida en la página de inicio.

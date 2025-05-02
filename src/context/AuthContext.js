@@ -11,6 +11,7 @@ export function AuthProvider({ children }) {
   const logout = async () => {
     await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`, { method: "POST", credentials: "include" });
     setUser(null);
+    window.location.href = "/";
   };
 
   const checkSession = async () => {
@@ -30,7 +31,9 @@ export function AuthProvider({ children }) {
     console.log(user);
   }, []);
 
-  return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, login, logout, refetchUser: checkSession }}>{children}</AuthContext.Provider>
+  );
 }
 
 export function useAuth() {

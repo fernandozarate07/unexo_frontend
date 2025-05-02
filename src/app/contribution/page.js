@@ -10,7 +10,7 @@ import StepTwo from "../../components/createContributionForm/StepTwo";
 import StepThree from "../../components/createContributionForm/StepThree";
 import StepFour from "../../components/createContributionForm/StepFour";
 import CheckboxResponsibility from "../../components/createContributionForm/CheckboxResponsability";
-import FormAlert from "../../components/createContributionForm/FormAlert";
+import FormAlert from "../../components/formComponents/FormAlert";
 
 // Estados posibles para la verificación del link (Google Drive)
 const LINK_VERIFICATION_STATES = {

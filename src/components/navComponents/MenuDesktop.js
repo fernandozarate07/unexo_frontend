@@ -15,12 +15,12 @@ export default function MenuDesktop({ user }) {
       <Separator orientation="vertical" height="12" />
       <ButtonGroup gap="3">
         <Link as={NextLink} href="/search" focusRing="none" textDecoration="none">
-          <Button variant="surface" width="full" borderRadius="md">
+          <Button variant="surface" width="fit" borderRadius="md">
             Explora
           </Button>
         </Link>
         <Link as={NextLink} href="/contribution" focusRing="none" textDecoration="none">
-          <Button width="full" borderRadius="md">
+          <Button width="fit" borderRadius="md">
             Aportar
           </Button>
         </Link>

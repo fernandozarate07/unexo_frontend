@@ -14,11 +14,11 @@ const FormAlert = ({ status, message }) => {
     <Alert.Root
       status={status} // El estado de la alerta, como "success", "error", etc.
       position="absolute" // Posición absoluta para poder mover la alerta en la pantalla.
-      bottom="-80px" // Coloca la alerta a 80px de la parte inferior de la pantalla.
+      bottom="-54px" // Coloca la alerta a 80px de la parte inferior de la pantalla.
       left="50%" // Centra la alerta horizontalmente en la pantalla.
       transform="translateX(-50%)" // Ajuste para un centrado perfecto.
       width="100%" // El ancho de la alerta será 100% del contenedor padre.
-      maxWidth="500px" // El ancho máximo será 500px, no más.
+      maxWidth="600px" // El ancho máximo será 500px, no más.
       borderRadius="md" // Bordes redondeados con un radio mediano.
       fontSize="sm" // Establece el tamaño de fuente pequeño para el mensaje.
     >
