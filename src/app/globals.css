@@ -4,7 +4,9 @@
   --gray-200: #e4e4e7;
   --gray-500: #71717a;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 html,
 body {
   max-width: 100vw;

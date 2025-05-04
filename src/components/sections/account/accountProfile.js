@@ -22,6 +22,7 @@ export default function AccountProfile() {
     <Flex
       as="section"
       id="accountProfile"
+      scrollMarginTop="80px"
       w="100%"
       maxW="1200px"
       mx="auto"

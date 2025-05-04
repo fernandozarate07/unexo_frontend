@@ -9,7 +9,7 @@ import FormAlert from "@/components/formComponents/FormAlert";
  *
  * @component
  * @param {Object} props
- * @param {string} props.contributionId - ID del aporte a eliminar.
+ * @param {string} props.contributionId - ID del aporte a quitar de la lista de guardados.
  * @param {Function} [props.onSuccess] - Callback que se ejecuta tras una eliminación exitosa.
  */
 export default function DeleteContributionButton({ contributionId, onSuccess }) {
@@ -36,14 +36,17 @@ export default function DeleteContributionButton({ contributionId, onSuccess }) 
     updateState({ isDeleting: true, error: null });
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contribution/delete/${contributionId}`, {
-        method: "DELETE",
-        credentials: "include",
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/savedContribution/savedContributionToggle/${contributionId}`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
 
       if (!response.ok) {
         const error = await response.json();
-        throw new Error(error.message || "ERROR: Error al eliminar el aporte");
+        throw new Error(error.message || "ERROR: Error al quitar el aporte de guardados");
       }
 
       onSuccess?.(); // Ejecuta callback si se proporciona
@@ -108,7 +111,7 @@ function ConfirmationDialog({ isOpen, onClose, onDelete, onCancel, isDeleting, e
           <Dialog.Content w="100%" maxW="600px" p="6" flexDirection="column" gap="3">
             <Dialog.Body p="0">
               <Text textAlign="center">
-                ¿Estás seguro de que querés eliminar este aporte? Esta acción no se puede deshacer.
+                ¿Estás seguro de que querés eliminar este aporte de tus guardados? Esta acción no se puede deshacer.
               </Text>
             </Dialog.Body>
 

@@ -207,7 +207,7 @@ export default function UpdateContributionButton({ contribution, onSuccess }) {
   // Render
   return (
     <>
-      <Button size="2xs" onClick={() => setIsDialogOpen(true)}>
+      <Button mr="1" size="2xs" onClick={() => setIsDialogOpen(true)}>
         <MdEditSquare />
       </Button>
 
