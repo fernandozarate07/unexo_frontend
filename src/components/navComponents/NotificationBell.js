@@ -25,7 +25,7 @@ export default function NotificationBell() {
         anchorPoint: { x: 0, y: 0 },
       }}>
       <Menu.Trigger asChild position="relative" focusRing="none">
-        <IconButton aria-label="Notificaciones" borderRadius="full" colorPalette="gray">
+        <IconButton aria-label="Notificaciones" borderRadius="full" variant="ghost">
           <IoNotifications />
           {unreadCount > 0 && (
             <Badge
@@ -36,7 +36,7 @@ export default function NotificationBell() {
               fontSize="xs"
               borderRadius="full"
               px="1.5"
-              bg="cyan.600">
+              bg="blue.600">
               {unreadCount}
             </Badge>
           )}
@@ -72,7 +72,12 @@ export default function NotificationBell() {
               ))}
             </Flex>
           )}
-          <Button aria-label="Actualizar notificaciones" w="100%" focusRing="none" onClick={fetchNotifications}>
+          <Button
+            aria-label="Actualizar notificaciones"
+            w="100%"
+            focusRing="none"
+            onClick={fetchNotifications}
+            colorPalette="blue">
             <GrUpdate />
           </Button>
         </MenuContent>

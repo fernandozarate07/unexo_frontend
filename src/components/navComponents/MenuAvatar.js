@@ -70,7 +70,7 @@ export default function AvatarMenu({ user, handleLogout }) {
             </MenuItem>
           </Flex>
           {/* cerrar sesión */}
-          <Button w="100%" focusRing="none" onClick={handleLogout}>
+          <Button w="100%" focusRing="none" onClick={handleLogout} colorPalette="blue">
             Cerrar sesión
           </Button>
         </MenuContent>

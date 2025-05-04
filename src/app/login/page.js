@@ -87,17 +87,17 @@ export default function LoginForm() {
               focusRing="none"
               textDecoration="none"
               href="/register"
-              color="cyan.600">
+              color="blue.600">
               ¿Olvidaste tu contraseña?
             </Link>
             {/* Mostrar el mensaje de error si existe */}
             {errorMessage && (
-              <Text w="100%" color="red.500" fontSize="xs" textAlign="center">
+              <Text w="100%" color="red.600" fontSize="xs" textAlign="center">
                 {errorMessage}
               </Text>
             )}
           </Field.Root>
-          <Button type="submit" colorPalette="cyan" borderRadius="md">
+          <Button type="submit" colorPalette="blue" borderRadius="md">
             Iniciar sesión
           </Button>
           <Text fontSize="sm">
@@ -108,7 +108,7 @@ export default function LoginForm() {
               focusRing="none"
               textDecoration="none"
               href="/register"
-              color="cyan.600">
+              color="blue.600">
               Regístrate
             </Link>
           </Text>

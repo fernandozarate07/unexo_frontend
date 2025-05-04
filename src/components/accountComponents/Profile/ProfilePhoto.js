@@ -38,7 +38,9 @@ const ProfilePictureUploader = ({ user, onFileSelect }) => {
             position="absolute"
             bottom="0"
             right="0"
-            borderRadius="full">
+            borderRadius="full"
+            variant="surface"
+            colorPalette="blue">
             <FaCameraRotate />
           </IconButton>
         </Flex>

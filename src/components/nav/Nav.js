@@ -38,7 +38,8 @@ export default function Nav() {
         alignItems="center"
         justifyContent="center"
         bg="white"
-        boxShadow="sm">
+        borderBottom="1px solid"
+        borderColor="gray.200">
         <Flex maxW="1200px" mx="3" h="80px" alignItems="center" justifyContent="space-between" w="100%">
           {/* logo */}
           <NextLink href="/">

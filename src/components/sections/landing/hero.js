@@ -37,11 +37,11 @@ export default function Hero() {
         {/* Título principal */}
         <Heading as="h1" fontSize={{ base: "4xl", md: "6xl" }} fontWeight="normal" lineHeight="1">
           Entre{" "}
-          <Text as="span" fontWeight="extrabold" color="cyan.600">
+          <Text as="span" fontWeight="extrabold" color="blue.600">
             todos
           </Text>{" "}
           hacemos que estudiar sea más{" "}
-          <Text as="span" fontWeight="extrabold" color="cyan.600">
+          <Text as="span" fontWeight="extrabold" color="blue.600">
             fácil.
           </Text>
         </Heading>
@@ -62,7 +62,7 @@ export default function Hero() {
           focusRing="none"
           textDecoration="none"
           href="/register">
-          <Button colorPalette="cyan" borderRadius="md">
+          <Button colorPalette="blue" borderRadius="md">
             Registrate gratis
           </Button>
         </Link>

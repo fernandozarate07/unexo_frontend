@@ -126,12 +126,12 @@ export default function RegisterForm() {
               </Text>
             )}
           </Field.Root>
-          <Button type="submit" colorPalette="cyan" borderRadius="md">
+          <Button type="submit" colorPalette="blue" borderRadius="md">
             Registrate
           </Button>
           <Text fontSize="sm">
             ¿Ya tienes cuenta?{" "}
-            <Link as={NextLink} fontWeight="800" focusRing="none" textDecoration="none" href="/login" color="cyan.600">
+            <Link as={NextLink} fontWeight="800" focusRing="none" textDecoration="none" href="/login" color="blue.600">
               Iniciar sesión
             </Link>
           </Text>

@@ -22,14 +22,7 @@ export default function MenuBurger({ user }) {
         anchorPoint: { x: 0, y: 0 },
       }}>
       <Menu.Trigger display={{ base: "flex", md: "none" }} asChild focusRing="none">
-        <IconButton
-          as="button"
-          rounded="full"
-          overflow="hidden"
-          cursor="pointer"
-          border="none"
-          bg="gray.200"
-          color="gray.900">
+        <IconButton as="button" rounded="full" overflow="hidden" cursor="pointer" border="none" variant="ghost">
           <GiHamburgerMenu />
         </IconButton>
       </Menu.Trigger>
@@ -71,7 +64,7 @@ export default function MenuBurger({ user }) {
                   </Button>
                 </Link>
                 <Link as={NextLink} href="/contribution" focusRing="none" textDecoration="none">
-                  <Button width="full" borderRadius="md">
+                  <Button width="full" borderRadius="md" colorPalette="blue">
                     Aportar
                   </Button>
                 </Link>

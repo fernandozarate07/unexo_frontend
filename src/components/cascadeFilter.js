@@ -105,7 +105,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               value={selected.type}
               onChange={handleChange}
               focusRing="none"
-              colorPalette="cyan"
+              colorPalette="blue"
               size={{ base: "sm", md: "md" }}
               borderRadius="md"
               bg="white">
@@ -128,7 +128,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               value={selected.faculty}
               onChange={handleChange}
               focusRing="none"
-              colorPalette="cyan"
+              colorPalette="blue"
               disabled={!selected.type}
               size={{ base: "sm", md: "md" }}
               borderRadius="md">
@@ -151,7 +151,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               value={selected.degree}
               onChange={handleChange}
               focusRing="none"
-              colorPalette="cyan"
+              colorPalette="blue"
               disabled={!filteredDegrees.length}
               size={{ base: "sm", md: "md" }}
               borderRadius="md">
@@ -174,7 +174,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               value={selected.academicYear}
               onChange={handleChange}
               focusRing="none"
-              colorPalette="cyan"
+              colorPalette="blue"
               disabled={!filteredYears.length}
               size={{ base: "sm", md: "md" }}
               borderRadius="md">
@@ -197,7 +197,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               value={selected.subject}
               onChange={handleChange}
               focusRing="none"
-              colorPalette="cyan"
+              colorPalette="blue"
               disabled={!filteredSubjects.length}
               size={{ base: "sm", md: "md" }}
               borderRadius="md">
@@ -219,7 +219,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
           aria-label="Buscar"
           color="gray.200"
           borderRadius={{ base: "md", md: "full" }}
-          colorPalette="cyan"
+          colorPalette="blue"
           size="sm"
           isDisabled={!selected.type}>
           <IoIosSearch />

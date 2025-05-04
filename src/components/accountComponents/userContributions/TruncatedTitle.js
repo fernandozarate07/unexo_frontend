@@ -43,7 +43,7 @@ function TitlePopover({ title }) {
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
-        <IconButton size="xs" variant="ghost" aria-label="Ver título completo">
+        <IconButton size="xs" variant="ghost" aria-label="Ver título completo" borderRadius="full">
           <FaAngleDown />
         </IconButton>
       </Popover.Trigger>

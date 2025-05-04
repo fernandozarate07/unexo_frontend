@@ -134,19 +134,19 @@ export default function AccountContribution() {
           href={item.url}
           target="_blank"
           rel="noopener noreferrer"
-          color="blue.500"
+          color="blue.600"
           focusRing="none"
           textDecoration="none">
           Ir a Drive <IoIosTrendingUp />
         </Link>
       </Table.Cell>
       <Table.Cell>
-        <Badge colorPalette={item.isActive ? "green" : "red"}>{item.isActive ? "Activo" : "Inactivo"}</Badge>
+        <Badge colorPalette={item.isActive ? "blue" : "gray"}>{item.isActive ? "Activo" : "Inactivo"}</Badge>
       </Table.Cell>
       <Table.Cell>{item.likesCount}</Table.Cell>
       <Table.Cell>
-        <DeleteContributionButton contributionId={item.id} onSuccess={fetchUserContributions} />
         <UpdateContributionButton contribution={item} onSuccess={fetchUserContributions} />
+        <DeleteContributionButton contributionId={item.id} onSuccess={fetchUserContributions} />
       </Table.Cell>
     </Table.Row>
   );

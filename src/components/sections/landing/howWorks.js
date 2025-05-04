@@ -133,7 +133,7 @@ export default function HowItWorks() {
               <TimelineItem key={index}>
                 <TimelineConnector>
                   <TimelineSeparator />
-                  <TimelineIndicator boxSize="6" bg="cyan.600">
+                  <TimelineIndicator boxSize="6" bg="blue.600">
                     <Icon as={step.icon} color="white" />
                   </TimelineIndicator>
                 </TimelineConnector>
@@ -159,7 +159,7 @@ export default function HowItWorks() {
               </Button>
             </Link>
             <Link as={NextLink} focusRing="none" textDecoration="none" href="/login" w="100%">
-              <Button w="100%" colorPalette="cyan" borderRadius="md">
+              <Button w="100%" colorPalette="blue" borderRadius="md">
                 Aporta
               </Button>
             </Link>

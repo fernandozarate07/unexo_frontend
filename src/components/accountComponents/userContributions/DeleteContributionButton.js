@@ -1,4 +1,4 @@
-import { Button, Dialog, Portal, Spinner, Box, Text } from "@chakra-ui/react";
+import { IconButton, Dialog, Portal, Spinner, Text, Button } from "@chakra-ui/react";
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import FormAlert from "@/components/formComponents/FormAlert";
@@ -71,9 +71,9 @@ export default function DeleteContributionButton({ contributionId, onSuccess }) 
 
   return (
     <>
-      <Button mr="1" size="2xs" colorPalette="red" onClick={openDialog}>
+      <IconButton mr="1" size="2xs" variant="surface" onClick={openDialog} borderRadius="full">
         <MdDelete />
-      </Button>
+      </IconButton>
 
       <ConfirmationDialog
         isOpen={isDialogOpen}
@@ -113,7 +113,7 @@ function ConfirmationDialog({ isOpen, onClose, onDelete, onCancel, isDeleting, e
             </Dialog.Body>
 
             <Dialog.Footer p="0">
-              <Button flex="1" colorPalette="red" onClick={onDelete} isDisabled={isDeleting} focusRing="none">
+              <Button flex="1" colorPalette="blue" onClick={onDelete} isDisabled={isDeleting} focusRing="none">
                 {isDeleting ? <Spinner size="sm" /> : "Eliminar"}
               </Button>
 

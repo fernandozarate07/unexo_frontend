@@ -23,7 +23,8 @@ export default function Footer() {
       justifyContent="center"
       gap="6"
       bg="white"
-      boxShadow="md">
+      borderTop="1px solid"
+      borderColor="gray.200">
       {/* Contenedor principal del contenido del footer */}
       <Flex
         w="100%"
@@ -36,13 +37,31 @@ export default function Footer() {
         <Flex flexDirection="column" gap="3">
           {/* Enlaces legales e informativos */}
           <Flex flexDirection="column" gap="3">
-            <Link as={NextLink} href="/about" focusRing="none" textDecoration="none">
+            <Link
+              as={NextLink}
+              href="/about"
+              focusRing="none"
+              _focus={{ boxShadow: "none" }}
+              textDecoration="none"
+              _hover={{ color: "blue.600" }}>
               Sobre Unexo
             </Link>
-            <Link as={NextLink} href="/privacyPolicy" focusRing="none" textDecoration="none">
+            <Link
+              as={NextLink}
+              href="/privacyPolicy"
+              focusRing="none"
+              _focus={{ boxShadow: "none" }}
+              textDecoration="none"
+              _hover={{ color: "blue.600" }}>
               Política de privacidad
             </Link>
-            <Link as={NextLink} href="/termsConditions" focusRing="none" textDecoration="none">
+            <Link
+              as={NextLink}
+              href="/termsConditions"
+              focusRing="none"
+              _focus={{ boxShadow: "none" }}
+              textDecoration="none"
+              _hover={{ color: "blue.600" }}>
               Términos y condiciones
             </Link>
           </Flex>
@@ -54,8 +73,8 @@ export default function Footer() {
               aria-label="Instagram" // Accesibilidad: describe la función del botón
               color="gray.200"
               borderRadius="full"
-              colorPalette="cyan"
-              size="sm">
+              colorPalette="blue"
+              size="xs">
               <FaInstagram />
             </IconButton>
           </Flex>
@@ -78,7 +97,8 @@ export default function Footer() {
               aria-label="enviar email a unexoapp@gmail.com"
               focusRing="none"
               textDecoration="none"
-              fontWeight="bold">
+              fontWeight="bold"
+              color="blue.600">
               unexoapp@gmail.com
             </Link>
           </Text>
@@ -86,15 +106,16 @@ export default function Footer() {
       </Flex>
       {/* Créditos del desarrollador */}
       <Text fontSize="sm">
-        © 2025 - Hecho con cariño por{" "}
+        Hecho para los alumnos de la UNSJ. Les deseamos muchos éxitos en su carrera. © 2025 {""}
         <Link
-          href="https://www.instagram.com/zarate.fernando.delvalle"
-          aria-label="Instagram del desarrollador de la app"
+          href="#"
+          aria-label="Instagram del la app"
           focusRing="none"
           textDecoration="none"
-          fontWeight="bold">
-          Fernando Zárate
-        </Link>{" "}
+          fontWeight="bold"
+          color="blue.600">
+          Unexo
+        </Link>
       </Text>
     </Flex>
   );

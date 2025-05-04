@@ -11,9 +11,9 @@
  * @returns {JSX.Element}
  */
 
-import { Button, Dialog, Portal, Spinner, Input, Textarea, Field, Switch, Flex } from "@chakra-ui/react";
+import { Button, Dialog, Portal, Spinner, Input, Textarea, Field, Switch, Flex, IconButton } from "@chakra-ui/react";
 import { useState } from "react";
-import { MdEditSquare } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
 import { useForm, Controller } from "react-hook-form";
 import FormAlert from "@/components/formComponents/FormAlert";
 
@@ -199,7 +199,7 @@ export default function UpdateContributionButton({ contribution, onSuccess }) {
    */
   const getBorderColor = () => {
     if (errors.linkDrive) return "red.600";
-    if (linkVerificationState === LINK_VERIFICATION_STATES.SUCCESS) return "green.600";
+    if (linkVerificationState === LINK_VERIFICATION_STATES.SUCCESS) return "blue.600";
     if (linkVerificationState === LINK_VERIFICATION_STATES.ERROR) return "red.600";
     return "gray.300";
   };
@@ -207,9 +207,9 @@ export default function UpdateContributionButton({ contribution, onSuccess }) {
   // Render
   return (
     <>
-      <Button mr="1" size="2xs" onClick={() => setIsDialogOpen(true)}>
-        <MdEditSquare />
-      </Button>
+      <IconButton mr="1" size="2xs" onClick={() => setIsDialogOpen(true)} colorPalette="blue" borderRadius="full">
+        <MdEdit />
+      </IconButton>
 
       <Portal>
         <Dialog.Root open={isDialogOpen} onOpenChange={(open) => !open && handleCancel()}>
@@ -237,8 +237,8 @@ export default function UpdateContributionButton({ contribution, onSuccess }) {
                       />
                     </Flex>
                     <Button
+                      variant="surface"
                       onClick={handleVerify}
-                      colorScheme="cyan"
                       size="md"
                       isDisabled={linkVerificationState === LINK_VERIFICATION_STATES.CHECKING}
                       alignSelf={{ base: "stretch", md: "center" }}>
@@ -270,7 +270,12 @@ export default function UpdateContributionButton({ contribution, onSuccess }) {
               </Dialog.Body>
 
               <Dialog.Footer p="0">
-                <Button onClick={handleSubmit(handleSubmitData)} flex="1" isDisabled={isUpdating} focusRing="none">
+                <Button
+                  onClick={handleSubmit(handleSubmitData)}
+                  flex="1"
+                  isDisabled={isUpdating}
+                  focusRing="none"
+                  colorPalette="blue">
                   {isUpdating ? <Spinner size="sm" /> : "Guardar cambios"}
                 </Button>
                 <Button flex="1" variant="surface" onClick={handleCancel} isDisabled={isUpdating}>

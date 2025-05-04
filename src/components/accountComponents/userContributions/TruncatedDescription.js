@@ -43,7 +43,7 @@ function DescriptionPopover({ description }) {
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
-        <IconButton size="xs" variant="ghost" aria-label="Ver descripción completa">
+        <IconButton size="xs" variant="ghost" aria-label="Ver descripción completa" borderRadius="full">
           <FaAngleDown />
         </IconButton>
       </Popover.Trigger>

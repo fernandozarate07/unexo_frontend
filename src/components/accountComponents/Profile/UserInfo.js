@@ -148,7 +148,7 @@ const UserProfileView = ({ user, onEditClick }) => (
       <Text fontSize="xl" fontWeight="bold">
         {user.name}
       </Text>
-      <IconButton borderRadius="full" variant="subtle" size="2xs" onClick={onEditClick}>
+      <IconButton borderRadius="full" variant="subtle" colorPalette="blue" size="2xs" onClick={onEditClick}>
         <TbUserEdit />
       </IconButton>
     </Flex>
@@ -180,7 +180,7 @@ const EditDialog = ({ isOpen, onClose, onSubmit, isUpdating, register, globalErr
             </Field.Root>
 
             <Dialog.Footer p="0">
-              <Button flex="1" focusRing="none" type="submit" isDisabled={isUpdating}>
+              <Button flex="1" focusRing="none" type="submit" isDisabled={isUpdating} colorPalette="blue">
                 {isUpdating ? <Spinner size="sm" /> : "Guardar cambios"}
               </Button>
 
