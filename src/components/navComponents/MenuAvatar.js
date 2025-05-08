@@ -50,11 +50,17 @@ export default function AvatarMenu({ user, handleLogout }) {
               cursor="pointer">
               Mis Aportes
             </MenuItem>
-            {/* <MenuItem value="nexopoints" onSelect={() => router.push("/account#accountNexopoints")} cursor="pointer">
-              Mis nexopoints
-            </MenuItem> */}
-            <MenuItem value="favorites" onSelect={() => router.push("/account#accountContribution")} cursor="pointer">
+            <MenuItem
+              value="savedContribution"
+              onSelect={() => router.push("/account#accountContribution")}
+              cursor="pointer">
               Aportes guardados
+            </MenuItem>
+            <MenuItem
+              value="downloadContribution"
+              onSelect={() => router.push("/account#accountDownload")}
+              cursor="pointer">
+              Aportes descargados
             </MenuItem>
           </Flex>
           {/* Configuración */}

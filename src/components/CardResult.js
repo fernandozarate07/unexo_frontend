@@ -1,7 +1,5 @@
-import { Box, Flex, Text, Heading, IconButton, Separator } from "@chakra-ui/react";
+import { Box, Flex, Text, Heading, Separator } from "@chakra-ui/react";
 import NextImage from "next/image";
-import { FaHeart } from "react-icons/fa";
-import { IoIosSave } from "react-icons/io";
 
 export default function CardResult({ result, onClick, isSelected }) {
   return (
@@ -35,15 +33,6 @@ export default function CardResult({ result, onClick, isSelected }) {
           <Text color="gray.500" fontSize="xs">
             {result.description.length > 100 ? result.description.slice(0, 100) + "..." : result.description}
           </Text>
-          <Flex gap="3" alignItems="center">
-            <IconButton aria-label="dar like" size="sm" px="3" colorPalette="cyan">
-              <Text fontSize="lg">{result.likesCount}</Text>
-              <FaHeart />
-            </IconButton>
-            <IconButton aria-label="guardar" size="md" variant="ghost" colorPalette="cyan">
-              <IoIosSave />
-            </IconButton>
-          </Flex>
         </Flex>
       </Flex>
     </Flex>

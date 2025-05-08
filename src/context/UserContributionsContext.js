@@ -7,8 +7,13 @@ const UserContributionsContext = createContext();
 export function UserContributionsProvider({ children }) {
   const [userContributions, setUserContributions] = useState([]); //Aportes
   const [userSavedContributions, setUserSavedContributions] = useState([]); // Aportes guardados del usuario
+  const [userDownloadContributions, setUserDownloadContributions] = useState([]); // Descargas del usuario
+
   const [isLoadingFetchContributions, setIsLoadingFetchContributions] = useState(false);
   const [isLoadingFetchSavedContributions, setIsLoadingFetchSavedContributions] = useState(false);
+  const [isLoadingFetchDownloadContributions, setIsLoadingFetchDownloadContributions] = useState(false);
+
+  //----------------------------------------------------------
 
   // Función memoizada para evitar recreación en cada render
   const fetchUserContributions = useCallback(async () => {
@@ -30,6 +35,8 @@ export function UserContributionsProvider({ children }) {
       setIsLoadingFetchContributions(false);
     }
   }, []); // Dependencias vacías ya que no usa valores externos
+
+  //----------------------------------------------------------
 
   // Función memoizada para evitar recreación en cada render
   const fetchUserSavedContributions = useCallback(async () => {
@@ -55,15 +62,43 @@ export function UserContributionsProvider({ children }) {
     }
   }, []); // Dependencias vacías ya que no usa valores externos
 
+  //----------------------------------------------------------
+
+  // Función memoizada para evitar recreación en cada render
+  const fetchDownloadContributions = useCallback(async () => {
+    setIsLoadingFetchDownloadContributions(true);
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/downloadContribution/recover`, {
+        credentials: "include",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "ERRROR: Error al recuperar los aportes del usuario");
+      }
+      setUserDownloadContributions(data.savedContributions); // recuperamos solo las contribuciones descargadas
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoadingFetchDownloadContributions(false);
+    }
+  }, []); // Dependencias vacías ya que no usa valores externos
+
   return (
     <UserContributionsContext.Provider
       value={{
         userContributions,
         userSavedContributions,
+        userDownloadContributions,
+        //------------------------
         isLoadingFetchContributions,
         isLoadingFetchSavedContributions,
+        isLoadingFetchDownloadContributions,
+        //------------------------
         fetchUserContributions,
         fetchUserSavedContributions,
+        fetchDownloadContributions,
       }}>
       {children}
     </UserContributionsContext.Provider>

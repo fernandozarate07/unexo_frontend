@@ -149,7 +149,7 @@ export default function AccountContribution() {
     <Flex
       as="section"
       id="accountSavedContributions"
-      scrollMarginTop="80px"
+      scrollMarginTop="84px"
       p="3"
       w="100%"
       maxW="1200px"

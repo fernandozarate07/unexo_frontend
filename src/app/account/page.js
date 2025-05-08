@@ -3,6 +3,7 @@ import { UserContributionsProvider } from "@/context/UserContributionsContext";
 import AccountProfile from "@/components/sections/account/accountProfile";
 import AccountContribution from "@/components/sections/account/accountContribution";
 import AccountSavedContributions from "@/components/sections/account/accountSavedContributions";
+import AccountDownloadContributions from "@/components/sections/account/accountDownloadContributions";
 
 export default function Account() {
   return (
@@ -11,6 +12,7 @@ export default function Account() {
         <AccountProfile />
         <AccountContribution />
         <AccountSavedContributions />
+        <AccountDownloadContributions />
       </Flex>
     </UserContributionsProvider>
   );

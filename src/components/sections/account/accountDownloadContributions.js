@@ -1,106 +1,89 @@
 "use client";
 
 import { useEffect, useState, useCallback, useMemo } from "react";
-import NextLink from "next/link";
 import { useUserContributions } from "@/context/UserContributionsContext";
-import { IoIosTrendingUp } from "react-icons/io";
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
-import DeleteContributionButton from "@/components/accountComponents/userContributions/DeleteContributionButton";
-import UpdateContributionButton from "@/components/accountComponents/userContributions/UpdateContributionButton";
 import TruncatedDescription from "@/components/accountComponents/userContributions/TruncatedDescription";
 import TruncatedTitle from "@/components/accountComponents/userContributions/TruncatedTitle";
 import {
   Table,
-  Badge,
-  Link,
+  Pagination,
+  ButtonGroup,
   Heading,
   Separator,
   Flex,
   Box,
   Spinner,
-  Text,
-  Pagination,
-  ButtonGroup,
   IconButton,
+  Text,
+  Link,
 } from "@chakra-ui/react";
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import { IoIosTrendingUp } from "react-icons/io";
+import NextLink from "next/link";
 
-/**
- * Número máximo de aportes mostrados por página.
- * @constant
- * @type {number}
- */
+// Configuración
 const PAGE_SIZE = 5;
-
-/**
- * Columnas que se muestran en la tabla de aportes.
- * @constant
- * @type {Array<{ header: string, accessor: string }>}
- */
 const TABLE_COLUMNS = [
-  { header: "Título", accessor: "title" },
-  { header: "Descripción", accessor: "description" },
-  { header: "Tipo", accessor: "type.name" },
-  { header: "Link", accessor: "url" },
-  { header: "Estado", accessor: "isActive" },
-  { header: "Likes", accessor: "likesCount" },
-  { header: "Acciones", accessor: "actions" },
+  { header: "Autor", accessor: "contribution.user.name" },
+  { header: "Título", accessor: "contribution.title" },
+  { header: "Descripción", accessor: "contribution.description" },
+  { header: "Tipo", accessor: "contribution.type.name" },
+  { header: "Link", accessor: "contribution.url" },
 ];
 
 /**
- * Componente que muestra los aportes realizados por el usuario en su cuenta.
- * Incluye paginación, acciones de editar y eliminar, y vista truncada de los títulos y descripciones.
+ * Componente que renderiza la lista de aportes guardados del usuario, con soporte para paginación.
  *
- * @component
- * @returns {JSX.Element} Sección de contribuciones del usuario con tabla paginada.
+ * @returns {JSX.Element} Sección de la cuenta de usuario que muestra los aportes guardados.
  */
 export default function AccountContribution() {
-  const { userContributions, fetchUserContributions, isLoadingFetchContributions } = useUserContributions();
+  const { userDownloadContributions, fetchDownloadContributions, isLoadingFetchDownloadContributions } =
+    useUserContributions();
 
   const [currentPage, setCurrentPage] = useState(1);
 
   /**
-   * Calcula el total de páginas necesarias en base al tamaño de página y la cantidad de contribuciones.
-   * @returns {number}
+   * Calcula la cantidad total de páginas según la cantidad de aportes guardados.
+   *
+   * @type {number}
    */
-  const totalPages = useMemo(() => Math.ceil(userContributions.length / PAGE_SIZE), [userContributions]);
+  const totalPages = useMemo(
+    () => Math.ceil(userDownloadContributions.length / PAGE_SIZE),
+    [userDownloadContributions]
+  );
 
   /**
-   * Obtiene el subconjunto de contribuciones correspondientes a la página actual.
-   * @returns {Array} Contribuciones paginadas
+   * Subconjunto paginado de los aportes a mostrar en la tabla actual.
+   *
+   * @type {Array}
    */
   const paginatedContributions = useMemo(() => {
     const startIndex = (currentPage - 1) * PAGE_SIZE;
-    return userContributions.slice(startIndex, startIndex + PAGE_SIZE);
-  }, [userContributions, currentPage]);
+    return userDownloadContributions.slice(startIndex, startIndex + PAGE_SIZE);
+  }, [userDownloadContributions, currentPage]);
 
   /**
    * Cambia a una página específica.
-   * @param {number} newPage - Número de página al que se quiere cambiar.
+   * @param {number} newPage - Número de página al que se desea navegar.
    */
   const handlePageChange = useCallback((newPage) => {
     setCurrentPage(newPage);
   }, []);
 
-  /**
-   * Cambia a la página anterior si existe.
-   */
+  /** Navega a la página anterior. */
   const handlePrevPage = useCallback(() => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
   }, []);
 
-  /**
-   * Cambia a la página siguiente si existe.
-   */
+  /** Navega a la página siguiente. */
   const handleNextPage = useCallback(() => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   }, [totalPages]);
 
-  /**
-   * Efecto para obtener las contribuciones del usuario al montar el componente.
-   */
+  /** Obtiene los aportes guardados al montar el componente. */
   useEffect(() => {
-    fetchUserContributions();
-  }, [fetchUserContributions]);
+    fetchDownloadContributions();
+  }, [fetchDownloadContributions]);
 
   /**
    * Renderiza el encabezado de la tabla.
@@ -115,23 +98,26 @@ export default function AccountContribution() {
   );
 
   /**
-   * Renderiza una fila de la tabla con los datos de una contribución.
-   * @param {Object} item - Objeto con los datos de una contribución.
+   * Renderiza una fila de la tabla con datos de un aporte guardado.
+   * @param {Object} item - Objeto de aporte guardado.
    * @returns {JSX.Element}
    */
   const renderTableRow = (item) => (
     <Table.Row key={item.id}>
       <Table.Cell>
-        <TruncatedTitle title={item.title} />
+        <TruncatedTitle title={item.contribution.user.name} />
       </Table.Cell>
       <Table.Cell>
-        <TruncatedDescription description={item.description} />
+        <TruncatedTitle title={item.contribution.title} />
       </Table.Cell>
-      <Table.Cell>{item.type.name}</Table.Cell>
+      <Table.Cell>
+        <TruncatedDescription description={item.contribution.description} />
+      </Table.Cell>
+      <Table.Cell>{item.contribution.type.name}</Table.Cell>
       <Table.Cell>
         <Link
           as={NextLink}
-          href={item.url}
+          href={item.contribution.url}
           target="_blank"
           rel="noopener noreferrer"
           color="blue.600"
@@ -140,23 +126,15 @@ export default function AccountContribution() {
           Ir a Drive <IoIosTrendingUp />
         </Link>
       </Table.Cell>
-      <Table.Cell>
-        <Badge colorPalette={item.isActive ? "blue" : "gray"}>{item.isActive ? "Activo" : "Inactivo"}</Badge>
-      </Table.Cell>
-      <Table.Cell>{item.likesCount}</Table.Cell>
-      <Table.Cell>
-        <UpdateContributionButton contribution={item} onSuccess={fetchUserContributions} />
-        <DeleteContributionButton contributionId={item.id} onSuccess={fetchUserContributions} />
-      </Table.Cell>
     </Table.Row>
   );
 
   /**
-   * Renderiza la sección de paginación con botones para navegar entre páginas.
+   * Renderiza los controles de paginación.
    * @returns {JSX.Element}
    */
   const renderPagination = () => (
-    <Pagination.Root count={userContributions.length} pageSize={PAGE_SIZE} page={currentPage}>
+    <Pagination.Root count={userDownloadContributions.length} pageSize={PAGE_SIZE} page={currentPage}>
       <ButtonGroup variant="ghost" size="sm" wrap="wrap">
         <Pagination.PrevTrigger asChild>
           <IconButton onClick={handlePrevPage}>
@@ -184,7 +162,7 @@ export default function AccountContribution() {
   return (
     <Flex
       as="section"
-      id="accountContribution"
+      id="accountDownload"
       scrollMarginTop="84px"
       p="3"
       w="100%"
@@ -196,14 +174,14 @@ export default function AccountContribution() {
       borderColor="gray.200"
       borderRadius="md">
       <Heading w="100%" fontSize="2xl" fontWeight="bold">
-        Mis aportes
+        Aportes descargados
       </Heading>
       <Separator />
 
-      {isLoadingFetchContributions ? (
+      {isLoadingFetchDownloadContributions ? (
         <Spinner size="md" alignSelf="center" />
-      ) : userContributions.length === 0 ? (
-        <Text textAlign="center">No tienes aportes subidos.</Text>
+      ) : userDownloadContributions.length === 0 ? (
+        <Text textAlign="center">No tienes descargas.</Text>
       ) : (
         <Box overflowX="auto">
           <Flex minW="800px" flexDirection="column" gap="3">
