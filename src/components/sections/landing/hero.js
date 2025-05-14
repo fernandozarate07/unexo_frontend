@@ -5,7 +5,7 @@ import { Heading, Text, Button, Flex, Link } from "@chakra-ui/react";
 // Importamos Link de Next.js para navegación entre rutas sin recargar la página
 import NextLink from "next/link";
 // Componente de filtro en cascada para búsqueda personalizada
-import CascadeFilter from "../../../components/cascadeFilter";
+import CascadeFilter from "@/components/CascadeFilter";
 
 /**
  * Componente Hero: Sección principal de bienvenida en la página de inicio.
@@ -18,22 +18,28 @@ export default function Hero() {
     <Flex
       as="section" // Indicamos que este bloque representa una sección semántica
       h={{ base: "auto", md: "calc(100vh - 80px)" }} // Altura adaptable según el tamaño del viewport
-      maxW="1200px" // Máximo ancho del contenedor
+      w="100%" // Máximo ancho del contenedor
       mx="auto" // Centramos horizontalmente
       flexDirection="column" // Apilamos los elementos verticalmente
       alignItems="center" // Centramos horizontalmente el contenido
-      justifyContent="center" // Centramos verticalmente
-      gap={{ base: "6", md: "12" }} // Espaciado entre elementos
+      gap={{ base: "3", md: "16" }} // Espaciado entre elementos
       textAlign="center" // Alineación del texto
-      p={{ base: "6", md: "12" }} // Padding adaptable a diferentes tamaños de pantalla
-    >
+      p={{ base: "3", md: "6" }} // Padding adaptable a diferentes tamaños de pantalla
+      bgImage="url(/bg_hero.svg)"
+      bgSize="400px"
+      backgroundPositionX="center"
+      backgroundPositionY="bottom"
+      bgRepeat="no-repeat"
+      bgColor="gray.50">
+      {/* Componente de filtro en cascada */}
+      <CascadeFilter />
       {/* Contenedor interno del texto y botón */}
       <Flex
-        maxW="800px"
+        maxW="900px"
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        gap={{ base: "6", md: "12" }}>
+        gap={{ base: "3", md: "6" }}>
         {/* Título principal */}
         <Heading as="h1" fontSize={{ base: "4xl", md: "6xl" }} fontWeight="normal" lineHeight="1">
           Entre{" "}
@@ -61,15 +67,12 @@ export default function Hero() {
           alignContent="center"
           focusRing="none"
           textDecoration="none"
-          href="/register">
-          <Button colorPalette="blue" borderRadius="md">
-            Registrate gratis
+          href="/search">
+          <Button colorPalette="blue" borderRadius="md" size="xl">
+            Explorá
           </Button>
         </Link>
       </Flex>
-
-      {/* Componente de filtro en cascada */}
-      <CascadeFilter />
     </Flex>
   );
 }

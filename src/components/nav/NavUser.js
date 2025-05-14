@@ -17,9 +17,7 @@ export default function NavGuest() {
     <Flex gap="3" alignItems="center">
       <MenuDesktop user={user} />
       <MenuBurger user={user} />
-      <Separator orientation="vertical" height="12" />
       <NotificationBell />
-      <Separator orientation="vertical" height="12" />
       <MenuAvatar user={user} handleLogout={handleLogout} />
     </Flex>
   );

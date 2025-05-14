@@ -41,31 +41,18 @@ export default function MenuBurger({ user }) {
               </Link>
             </MenuItem>
           </Flex>
-          {/* nexopoints */}
-          <Flex flexDirection="column" border="1px solid" borderColor="gray.200" borderRadius="sm">
-            <MenuItem borderRadius="none" bg="gray.200">
-              <Text w="100%" fontWeight="bold" textAlign="center">
-                Nexopoints
-              </Text>
-            </MenuItem>
-            <MenuItem>
-              <Flex w="100%" alignItems="center" justifyContent="center" borderColor="gray.200" borderRadius="md">
-                {user.points}
-              </Flex>
-            </MenuItem>
-          </Flex>
           {/* cta */}
           <Flex flexDirection="column" border="1px solid" borderColor="gray.200" borderRadius="sm">
             <MenuItem>
               <ButtonGroup display="flex" gap="3">
-                <Link as={NextLink} href="/search" focusRing="none" textDecoration="none">
-                  <Button variant="surface" width="full" borderRadius="md">
-                    Explora
-                  </Button>
-                </Link>
                 <Link as={NextLink} href="/contribution" focusRing="none" textDecoration="none">
                   <Button width="full" borderRadius="md" colorPalette="blue">
                     Aportar
+                  </Button>
+                </Link>
+                <Link as={NextLink} href="/search" focusRing="none" textDecoration="none">
+                  <Button variant="surface" width="full" borderRadius="md">
+                    Explora
                   </Button>
                 </Link>
               </ButtonGroup>

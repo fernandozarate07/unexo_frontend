@@ -14,25 +14,16 @@ export default function NavGuest() {
         _hover={{ color: "blue.600" }}>
         Inicio
       </Link>
-      <Link
-        as={NextLink}
-        href="/about"
-        focusRing="none"
-        _focus={{ boxShadow: "none" }}
-        textDecoration="none"
-        _hover={{ color: "blue.600" }}>
-        Sobre Unexo
-      </Link>
       <Separator orientation="vertical" height="12" />
       <ButtonGroup gap="3">
-        <Link as={NextLink} href="/search" focusRing="none" textDecoration="none">
+        <Link as={NextLink} href="/login" focusRing="none" textDecoration="none">
           <Button variant="surface" width="full" borderRadius="md">
-            Explora
+            Iniciar sesión
           </Button>
         </Link>
-        <Link as={NextLink} href="/login" focusRing="none" textDecoration="none">
+        <Link as={NextLink} href="/register" focusRing="none" textDecoration="none">
           <Button width="full" colorPalette="blue" borderRadius="md">
-            Iniciar sesión
+            Registrate
           </Button>
         </Link>
       </ButtonGroup>

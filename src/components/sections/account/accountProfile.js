@@ -32,7 +32,8 @@ export default function AccountProfile() {
       p="3"
       border="1px solid"
       borderColor="gray.200"
-      borderRadius="md">
+      borderRadius="md"
+      boxShadow="sm">
       {/* Encabezado de la sección de perfil */}
       <Heading w="100%" fontSize="2xl" fontWeight="bold">
         Perfil

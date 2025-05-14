@@ -9,9 +9,9 @@ export function UserContributionsProvider({ children }) {
   const [userSavedContributions, setUserSavedContributions] = useState([]); // Aportes guardados del usuario
   const [userDownloadContributions, setUserDownloadContributions] = useState([]); // Descargas del usuario
 
-  const [isLoadingFetchContributions, setIsLoadingFetchContributions] = useState(false);
-  const [isLoadingFetchSavedContributions, setIsLoadingFetchSavedContributions] = useState(false);
-  const [isLoadingFetchDownloadContributions, setIsLoadingFetchDownloadContributions] = useState(false);
+  const [isLoadingFetchContributions, setIsLoadingFetchContributions] = useState(true);
+  const [isLoadingFetchSavedContributions, setIsLoadingFetchSavedContributions] = useState(true);
+  const [isLoadingFetchDownloadContributions, setIsLoadingFetchDownloadContributions] = useState(true);
 
   //----------------------------------------------------------
 

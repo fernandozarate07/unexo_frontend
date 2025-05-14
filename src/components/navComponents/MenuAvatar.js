@@ -33,6 +33,19 @@ export default function AvatarMenu({ user, handleLogout }) {
       </Menu.Trigger>
       <MenuPositioner>
         <MenuContent display="flex" flexDirection="column" gap="3">
+          {/* nexopoints */}
+          <Flex flexDirection="column" border="1px solid" borderColor="gray.200" borderRadius="sm">
+            <MenuItem borderRadius="none" bg="gray.200">
+              <Text w="100%" fontWeight="bold" textAlign="center">
+                Nexopoints
+              </Text>
+            </MenuItem>
+            <MenuItem>
+              <Flex w="100%" alignItems="center" justifyContent="center" borderColor="gray.200" borderRadius="md">
+                {user.points}
+              </Flex>
+            </MenuItem>
+          </Flex>
           {/* cuenta */}
           <Flex flexDirection="column" border="1px solid" borderColor="gray.200" borderRadius="sm">
             <MenuItem borderRadius="none" bg="gray.200">

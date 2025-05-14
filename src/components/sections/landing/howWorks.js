@@ -113,7 +113,7 @@ export default function HowItWorks() {
   });
 
   return (
-    <Flex w="100%" p={{ base: 6, md: 12 }}>
+    <Flex w="100%" p={{ base: 6, md: 12 }} bgColor="gray.50">
       <Flex maxW="1200px" mx="auto" flexDirection={{ base: "column", md: "row" }} gap={{ base: 6, md: 12 }}>
         {/* Sección de primeros pasos */}
         <Flex

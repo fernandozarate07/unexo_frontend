@@ -87,7 +87,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
   const filteredSubjects = data.subjects.filter((sub) => sub.yearId === parseInt(selected.academicYear));
 
   return (
-    <Flex as="form" w="100%" onSubmit={handleSubmit} alignItems="center" justifyContent="center">
+    <Flex as="form" w="100%" maxW="800px" onSubmit={handleSubmit} alignItems="center" justifyContent="center">
       <Flex
         w="100%"
         p={{ base: "3", md: "6" }}
@@ -95,8 +95,9 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
         align="center"
         justifyContent="center"
         gap="3"
-        boxShadow="sm"
-        borderRadius="md">
+        boxShadow="md"
+        borderRadius={{ base: "md", md: "full" }}
+        bgColor="white">
         {/* Select: Tipo de aporte */}
         <Field.Root w="100%">
           <NativeSelect.Root>
@@ -107,11 +108,11 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               focusRing="none"
               colorPalette="blue"
               size={{ base: "sm", md: "md" }}
-              borderRadius="md"
-              bg="white">
-              <option value="">Tipo de aporte</option>
+              borderRadius={{ base: "md", md: "full" }}
+              bg="white"
+              placeholder="Tipo de aporte">
               {data.types.map((type) => (
-                <option key={type.id} value={type.id}>
+                <option key={type.id} value={type.id} style={{ bg: "white" }}>
                   {type.name}
                 </option>
               ))}
@@ -119,7 +120,6 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-
         {/* Select: Facultad */}
         <Field.Root w="100%">
           <NativeSelect.Root>
@@ -131,8 +131,8 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               colorPalette="blue"
               disabled={!selected.type}
               size={{ base: "sm", md: "md" }}
-              borderRadius="md">
-              <option value="">Facultad</option>
+              borderRadius={{ base: "md", md: "full" }}
+              placeholder="Facultad">
               {filteredFaculties.map((fac) => (
                 <option key={fac.id} value={fac.id}>
                   {fac.name}
@@ -142,7 +142,6 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-
         {/* Select: Carrera */}
         <Field.Root w="100%">
           <NativeSelect.Root>
@@ -154,8 +153,8 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               colorPalette="blue"
               disabled={!filteredDegrees.length}
               size={{ base: "sm", md: "md" }}
-              borderRadius="md">
-              <option value="">Carrera</option>
+              borderRadius={{ base: "md", md: "full" }}
+              placeholder="Carrera">
               {filteredDegrees.map((deg) => (
                 <option key={deg.id} value={deg.id}>
                   {deg.name}
@@ -165,7 +164,6 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-
         {/* Select: Año */}
         <Field.Root w="100%">
           <NativeSelect.Root>
@@ -177,7 +175,8 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               colorPalette="blue"
               disabled={!filteredYears.length}
               size={{ base: "sm", md: "md" }}
-              borderRadius="md">
+              borderRadius={{ base: "md", md: "full" }}
+              placeholder="Año">
               <option value="">Año</option>
               {filteredYears.map((yr) => (
                 <option key={yr.id} value={yr.id}>
@@ -188,7 +187,6 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-
         {/* Select: Asignatura */}
         <Field.Root w="100%">
           <NativeSelect.Root>
@@ -200,8 +198,8 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
               colorPalette="blue"
               disabled={!filteredSubjects.length}
               size={{ base: "sm", md: "md" }}
-              borderRadius="md">
-              <option value="">Asignatura</option>
+              borderRadius={{ base: "md", md: "full" }}
+              placeholder="Asignatura">
               {filteredSubjects.map((sub) => (
                 <option key={sub.id} value={sub.id}>
                   {sub.name}
@@ -211,7 +209,6 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
         </Field.Root>
-
         {/* Botón de búsqueda */}
         <IconButton
           w={{ base: "100%", md: "auto" }}

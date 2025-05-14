@@ -14,17 +14,7 @@ export default function MenuDesktop({ user }) {
           _hover={{ color: "blue.600" }}>
           Inicio
         </Link>
-        <Link
-          as={NextLink}
-          href="/about"
-          focusRing="none"
-          _focus={{ boxShadow: "none" }}
-          textDecoration="none"
-          _hover={{ color: "blue.600" }}>
-          Sobre Unexo
-        </Link>
       </Flex>
-      <Separator orientation="vertical" height="12" />
       <ButtonGroup gap="3">
         <Link as={NextLink} href="/contribution" focusRing="none" textDecoration="none">
           <Button width="fit" borderRadius="md" colorPalette="blue">
@@ -33,14 +23,10 @@ export default function MenuDesktop({ user }) {
         </Link>
         <Link as={NextLink} href="/search" focusRing="none" textDecoration="none">
           <Button variant="surface" width="fit" borderRadius="md">
-            Explora
+            Explorá
           </Button>
         </Link>
       </ButtonGroup>
-      <Separator orientation="vertical" height="12" />
-      <Flex px="3" py="2" border="1px solid" borderColor="gray.200" borderRadius="md">
-        Nexopoints: {user.points}
-      </Flex>
     </Flex>
   );
 }
