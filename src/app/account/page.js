@@ -8,7 +8,7 @@ import AccountDownloadContributions from "@/components/sections/account/accountD
 export default function Account() {
   return (
     <UserContributionsProvider>
-      <Flex w="100%" flexDirection="column" gap="6" p={{ base: "6", md: "12" }}>
+      <Flex w="100%" flexDirection="column" gap="6" p={{ base: "6", md: "12" }} bg="gray.50">
         <AccountProfile />
         <AccountContribution />
         <AccountSavedContributions />

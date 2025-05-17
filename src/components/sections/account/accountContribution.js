@@ -195,7 +195,8 @@ export default function AccountContribution() {
       border="1px solid"
       borderColor="gray.200"
       borderRadius="md"
-      boxShadow="sm">
+      boxShadow="sm"
+      bg="white">
       <Heading w="100%" fontSize="2xl" fontWeight="bold">
         Mis aportes
       </Heading>

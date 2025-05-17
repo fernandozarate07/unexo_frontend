@@ -84,8 +84,8 @@ export default function AvatarMenu({ user, handleLogout }) {
               </Text>
             </MenuItem>
             <Separator />
-            <MenuItem value="session" onSelect={() => router.push("/userSessionSegurity")} cursor="pointer">
-              Inicio de sesión y seguridad
+            <MenuItem value="session" onSelect={() => router.push("/loginSecurity#updatePassword")} cursor="pointer">
+              Cambiar contraseña
             </MenuItem>
           </Flex>
           {/* cerrar sesión */}
