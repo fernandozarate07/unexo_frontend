@@ -25,7 +25,7 @@ export default function AvatarMenu({ user, handleLogout }) {
       }}>
       <Menu.Trigger asChild focusRing="none">
         <Box as="button" rounded="full" overflow="hidden" cursor="pointer" border="none" p="0">
-          <Avatar.Root size="2xl">
+          <Avatar.Root>
             <Avatar.Fallback name={user.name} />
             <Avatar.Image src={user.profilePhoto} />
           </Avatar.Root>

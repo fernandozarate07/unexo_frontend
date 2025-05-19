@@ -3,6 +3,9 @@ import { UiProvider } from "@/components/ui/provider"; // Proveedor para la inte
 import Nav from "@/components/nav/Nav"; // Componente de navegación que se muestra en la parte superior de cada página.
 import Footer from "@/components/Footer"; // Componente de pie de página que se muestra al final de cada página.
 import { AuthProvider } from "@/context/AuthContext"; // Proveedor de contexto de autenticación, gestiona el estado de inicio de sesión y el acceso del usuario.
+import { LoadingProvider } from "@/context/LoadingContext";
+import RouteLoader from "@/components/RouteLoader"; // Componente que muestra un loader durante la transición entre páginas.
+import RouteChangeHandler from "@/components/RouteChangeHandler";
 
 /**
  * Componente principal de la estructura de la aplicación, que envuelve la interfaz de usuario
@@ -18,18 +21,24 @@ export default function RootLayout({ children }) {
     <html suppressHydrationWarning>
       {/* Asegura que Next.js maneje la hidratación correctamente en el lado del cliente */}
       <body>
-        {/* Proveedor para la configuración global de la UI */}
-        <UiProvider>
-          {/* Proveedor para gestionar el estado de autenticación del usuario */}
-          <AuthProvider>
-            {/* Componente de navegación */}
-            <Nav />
-            {/* Aquí se renderiza el contenido de las páginas (children) */}
-            {children}
-            {/* Componente de pie de página */}
-            <Footer />
-          </AuthProvider>
-        </UiProvider>
+        {/* Proveedor para el contexto de loader para la transición entre paginas */}
+        <LoadingProvider>
+          {/* Proveedor para la configuración global de la UI */}
+          <UiProvider>
+            {/* loader para la transición entre paginas */}
+            <RouteLoader />
+            <RouteChangeHandler />
+            {/* Proveedor para gestionar el estado de autenticación del usuario */}
+            <AuthProvider>
+              {/* Componente de navegación */}
+              <Nav />
+              {/* Aquí se renderiza el contenido de las páginas (children) */}
+              {children}
+              {/* Componente de pie de página */}
+              <Footer />
+            </AuthProvider>
+          </UiProvider>
+        </LoadingProvider>
       </body>
     </html>
   );

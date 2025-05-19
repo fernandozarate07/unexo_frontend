@@ -1,9 +1,9 @@
 "use client"; // Indica que este componente se renderiza del lado del cliente (Client Component)
 
 // Chakra UI y Next.js imports para estructura visual, navegación e íconos
-import { Flex, Text, Stack, HStack, Link, IconButton } from "@chakra-ui/react";
+import { Flex, Text, Link, IconButton } from "@chakra-ui/react";
 // import { Icon } from "@chakra-ui/icons"; // Comentado, posiblemente para íconos personalizados en el futuro
-import { FaInstagram } from "react-icons/fa"; // Ícono de Instagram
+import { FaInstagramSquare } from "react-icons/fa";
 import NextImage from "next/image"; // Componente optimizado para imágenes en Next.js
 import NextLink from "next/link"; // Componente de enlace para navegación interna en Next.js
 
@@ -70,12 +70,12 @@ export default function Footer() {
           <Flex gap="3">
             <IconButton
               type="submit"
-              aria-label="Instagram" // Accesibilidad: describe la función del botón
+              aria-label="Instagram"
               color="gray.200"
               borderRadius="full"
               colorPalette="blue"
               size="xs">
-              <FaInstagram />
+              <FaInstagramSquare />
             </IconButton>
           </Flex>
         </Flex>
@@ -90,18 +90,15 @@ export default function Footer() {
           {/* Imagen del logo de Unexo */}
           <NextImage src="/unexo_logo_nav.svg" alt="Logo" width={180} height={90} />
           {/* Información de contacto */}
-          <Text>
-            Contactanos a{" "}
-            <Link
-              href="mailto:unexoapp@gmail.com"
-              aria-label="enviar email a unexoapp@gmail.com"
-              focusRing="none"
-              textDecoration="none"
-              fontWeight="bold"
-              color="blue.600">
-              unexoapp@gmail.com
-            </Link>
-          </Text>
+          <Link
+            href="mailto:contacto.unexo@gmail.com"
+            aria-label="enviar email a contacto.unexo@gmail.com"
+            focusRing="none"
+            textDecoration="none"
+            fontWeight="bold"
+            color="blue.600">
+            contacto.unexo@gmail.com
+          </Link>
         </Flex>
       </Flex>
       {/* Créditos del desarrollador */}
