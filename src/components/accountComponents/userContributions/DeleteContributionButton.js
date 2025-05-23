@@ -36,7 +36,7 @@ export default function DeleteContributionButton({ contributionId, onSuccess }) 
     updateState({ isDeleting: true, error: null });
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contribution/delete/${contributionId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contribution/${contributionId}`, {
         method: "DELETE",
         credentials: "include",
       });

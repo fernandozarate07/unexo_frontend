@@ -52,7 +52,7 @@ export default function UserInfoSection() {
   };
 
   const updatePassword = async (data) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/updatePassword`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/password`, {
       method: "PUT",
       credentials: "include",
       headers: {

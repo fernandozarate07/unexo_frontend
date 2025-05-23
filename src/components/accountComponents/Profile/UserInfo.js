@@ -67,7 +67,7 @@ export default function UserInfoSection({ user, refetchUser }) {
    * @param {string} name - El nuevo nombre a guardar.
    */
   const updateUserName = async (name) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/updateName`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/name`, {
       method: "PUT",
       credentials: "include",
       headers: {

@@ -37,7 +37,7 @@ export default function DeleteContributionButton({ contributionId, onSuccess }) 
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/savedContribution/savedContributionToggle/${contributionId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/savedContribution/${contributionId}/toggle`,
         {
           method: "POST",
           credentials: "include",

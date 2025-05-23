@@ -37,13 +37,10 @@ export default function DownloadContributionButton({ contributionId, setDownload
     updateState({ isDownloading: true, error: null });
 
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/downloadContribution/create/${contributionId}`,
-        {
-          method: "POST",
-          credentials: "include",
-        }
-      );
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/downloadContribution/${contributionId}`, {
+        method: "POST",
+        credentials: "include",
+      });
       const data = await response.json();
       if (!data.success) {
         throw new Error(data.message || "ERROR: Error al intentar descargar el aporte");

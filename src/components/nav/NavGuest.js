@@ -1,6 +1,5 @@
 import { Flex, Link, Button, ButtonGroup, Separator } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { RiCircleFill } from "react-icons/ri";
 
 export default function NavGuest() {
   return (

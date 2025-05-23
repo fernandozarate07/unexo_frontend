@@ -52,7 +52,7 @@ const SearchPage = () => {
         params.append(key, value);
       }
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/filter/cascadeFilter?${params.toString()}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/filter/options?${params.toString()}`);
         const json = await res.json();
         setResults(json.data.result);
         setSelectedResult(null);

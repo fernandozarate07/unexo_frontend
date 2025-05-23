@@ -19,7 +19,7 @@ export function UserContributionsProvider({ children }) {
   const fetchUserContributions = useCallback(async () => {
     setIsLoadingFetchContributions(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contribution/recoverUserContributions`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contribution/my`, {
         credentials: "include",
       });
 
@@ -42,12 +42,9 @@ export function UserContributionsProvider({ children }) {
   const fetchUserSavedContributions = useCallback(async () => {
     try {
       setIsLoadingFetchSavedContributions(true);
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/savedContribution/recoverUserSavedContributions`,
-        {
-          credentials: "include",
-        }
-      );
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/savedContribution/`, {
+        credentials: "include",
+      });
 
       const data = await res.json();
 
@@ -68,7 +65,7 @@ export function UserContributionsProvider({ children }) {
   const fetchDownloadContributions = useCallback(async () => {
     setIsLoadingFetchDownloadContributions(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/downloadContribution/recover`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/downloadContribution/`, {
         credentials: "include",
       });
 

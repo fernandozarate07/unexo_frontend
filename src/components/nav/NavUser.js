@@ -1,4 +1,4 @@
-import { Flex, Separator } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { useAuth } from "@/context/AuthContext";
 
 import MenuDesktop from "../navComponents/MenuDesktop";

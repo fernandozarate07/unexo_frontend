@@ -88,7 +88,7 @@ export default function UpdateContributionButton({ contribution, onSuccess }) {
    * @throws {Error} - Si el link no es válido o no es público.
    */
   const verifyDriveLink = async (link) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contribution/checkIsPublicLink`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contribution/verify-link`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ linkDrive: link }),
@@ -151,7 +151,8 @@ export default function UpdateContributionButton({ contribution, onSuccess }) {
     setGlobalError(null);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contribution/update`, {
+      const contributionId = parseInt(contribution.id, 10);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contribution/${contributionId}`, {
         method: "PUT",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

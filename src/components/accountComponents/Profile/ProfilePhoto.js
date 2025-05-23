@@ -173,7 +173,7 @@ export default function ProfilePictureSection({ user, refetchUser }) {
       const formData = new FormData();
       formData.append("image", blob, "profile-picture.jpg");
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/handleProfilePicture`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/profile-picture`, {
         credentials: "include",
         method: "PUT",
         body: formData,

@@ -65,7 +65,7 @@ const StepFour = ({ linkIsVerified, setLinkIsVerified }) => {
    * @returns {string} - El mensaje de éxito del backend si la verificación fue exitosa.
    */
   const verifyDriveLink = async (link) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contribution/checkIsPublicLink`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contribution/verify-link`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ linkDrive: link }), // Enviamos el enlace en el cuerpo de la solicitud

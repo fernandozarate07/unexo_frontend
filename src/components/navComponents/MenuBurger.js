@@ -8,7 +8,6 @@ import {
   MenuItem,
   MenuPositioner,
   MenuContent,
-  Icon,
   Text,
   IconButton,
 } from "@chakra-ui/react";

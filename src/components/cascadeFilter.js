@@ -1,7 +1,7 @@
 "use client"; // Indica que este componente es del lado del cliente (Client Component)
 
 // Chakra UI y librerías necesarias
-import { Flex, IconButton, Field, NativeSelect, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, IconButton, Field, NativeSelect } from "@chakra-ui/react";
 import { IoIosSearch } from "react-icons/io"; // Ícono de búsqueda
 import { useEffect, useState } from "react";
 
@@ -36,7 +36,7 @@ const cascadeFilter = ({ initialSelected = {}, onSubmit }) => {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/filter/recoverData`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/filter/prefill`);
         const json = await res.json();
         setData(json.data);
       } catch (error) {

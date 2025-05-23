@@ -1,4 +1,4 @@
-import { Flex, Link, Button, ButtonGroup, Separator } from "@chakra-ui/react";
+import { Flex, Link, Button, ButtonGroup } from "@chakra-ui/react";
 import NextLink from "next/link";
 
 export default function MenuDesktop({ user }) {

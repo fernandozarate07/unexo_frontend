@@ -77,7 +77,7 @@ const CreateContribution = () => {
     const fetchInitialData = async () => {
       try {
         // Se hace una solicitud GET al backend para obtener los datos de los filtros
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/filter/recoverData`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/filter/prefill`);
         const json = await res.json();
         setData(json.data); // Guardamos los datos recibidos en el estado 'data'
       } catch (error) {
@@ -163,7 +163,7 @@ const CreateContribution = () => {
 
     try {
       // Enviamos los datos del formulario al backend
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contribution/create`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contribution/`, {
         method: "POST", // Método POST para enviar los datos
         headers: {
           "Content-Type": "application/json",

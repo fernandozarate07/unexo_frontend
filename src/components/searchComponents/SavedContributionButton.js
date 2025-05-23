@@ -21,12 +21,9 @@ export default function SavedContributionButton({ contributionId }) {
       try {
         setError(null);
         setIsRecovering(true);
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/savedContribution/recoverSavedStateContribution/${contributionId}`,
-          {
-            credentials: "include",
-          }
-        );
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/savedContribution/${contributionId}`, {
+          credentials: "include",
+        });
         const data = await response.json();
         if (data.success !== true) {
           throw new Error(data.message || "Error al recuperar el estado de guardado.");
@@ -49,7 +46,7 @@ export default function SavedContributionButton({ contributionId }) {
       setIsSaved(!previousState); // Optimistic update
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/savedContribution/savedContributionToggle/${contributionId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/savedContribution/${contributionId}/toggle`,
         {
           method: "POST",
           credentials: "include",

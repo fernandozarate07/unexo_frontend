@@ -23,7 +23,7 @@ export default function LikeButton({ contributionId, likes }) {
         setError(null);
         setIsRecovering(true);
         setLikesCount(likes);
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/like/recoverLikeState/${contributionId}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/like/${contributionId}`, {
           credentials: "include",
         });
         const data = await response.json();
@@ -51,7 +51,7 @@ export default function LikeButton({ contributionId, likes }) {
       setIsSaved(!previousState); // actualizacion optimista
       setLikesCount((prev) => (previousState ? prev - 1 : prev + 1));
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/like/likeToggle/${contributionId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/like/${contributionId}/toggle`, {
         method: "POST",
         credentials: "include",
       });
